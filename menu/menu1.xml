@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<menu>
+	<item id="menu" text="Menu">
+		<item id="1" text="Inicio" img="Home.gif" />
+		<item id="2" text="Usuarios" img="users.gif"/>
+		<item id="file_sep_1" type="separator"/>
+		<item id="cerrar" text="Cerrar Sesion" img="close.gif"/>
+	</item>
+	<item id="sistema" text="Sistema">
+		<item id="11" text="Egresos" img="new.gif"/>
+		<item id="12" text="Ingresos" img="new.gif"/>
+		<item id="16" text="Depositos" img="new.gif"/>
+		<item id="file_sep_2" type="separator"/>
+		<item id="22" text="Inventario" img="new.gif"/>
+		<item id="file_sep_3" type="separator"/>
+		<item id="18" text="Reporte de Servicio" img="new.gif"/>
+		<item id="file_sep_4" type="separator"/>
+		<item id="23" text="Generar Saldos" img="new.gif"/>
+		<item id="24" text="Consultar Saldos" img="new.gif"/>
+		<item id="25" text="Estados de Cuenta" img="new.gif"/>
+		<item id="28" text="Clientes a Cobrar" img="new.gif"/>
+		<item id="file_sep_9" type="separator"/>
+		<item id="27" text="Cajas" img="new.gif"/>		
+	</item>
+	<item id="facturas" text="Facturas">
+		<item id="33" text="Facturas" img="new.gif"/>
+		<item id="34" text="Proveedores" img="new.gif"/>
+	</item>
+	<item id="catalogo" text="Catálogos">
+		<item id="36" text="Canales" img="new.gif"/>
+		<item id="3" text="Bancos" img="new.gif"/>
+		<item id="4" text="Sucursales" img="new.gif"/>
+		<item id="9" text="Empleados" img="new.gif"/>
+		<item id="file_sep_5" type="separator"/>
+		<item id="19" text="Calles" img="new.gif"/>
+		<item id="20" text="TAPS" img="new.gif"/>
+		<item id="file_sep_6" type="separator"/>
+		<item id="21" text="Equipos Inventario" img="new.gif"/>
+		<item id="file_sep_7" type="separator"/>
+		<item id="5" text="Tipo Ingresos" img="new.gif"/>
+		<item id="6" text="Tipo Egresos" img="new.gif"/>
+		<item id="file_sep_8" type="separator"/>
+		<item id="10" text="Clientes" img="new.gif"/>
+		<item id="26" text="Promociones" img="new.gif"/>	
+	</item>
+	<item id="reportes_generales" text="Reportes Generales">
+		<item id="29" text="Clientes" img="new.gif"/>
+		<item id="30" text="Caja" img="new.gif"/>
+		<item id="31" text="Reportes de Servicio" img="new.gif"/>
+		<item id="32" text="Clientes por Tap" img="new.gif"/>
+		<item id="35" text="Auditorias / Revision de Red" img="new.gif"/>
+	</item>
+	<item id="help" text="Ayuda">
+		<item id="about" text="Acerca de..." img="about.gif"/>
+		<item id="needhelp" text="Ayuda" img="help.gif"/>
+		<item id="bugReporting" text="Reportar error" img="bug_reporting.gif"/>
+	</item>
+</menu>
