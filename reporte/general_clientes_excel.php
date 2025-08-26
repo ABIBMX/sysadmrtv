@@ -27,6 +27,9 @@
         	<tr bgcolor="#CCCCCC">
             	<td>Sucursal</td>
                     <td>Activos</td>
+					<td>Activos con TV</td>
+					<td>Activos con TV + Internet</td>
+					<td>Activos con Internet</td>
                     <td>Cancelados</td>
                     <td>Pendientes de Instalar</td>
                     <td>Total</td>         
@@ -36,13 +39,19 @@
 <?php
 		$contador=0;
 		$total_activos = 0;
+		$total_activos_TV = 0;
+		$total_activos_TV_Internet = 0;
+		$total_activos_Internet = 0;
 		$total_cancelados = 0;
 		$total_pendientes = 0;
 		$total_total = 0;
 		$consulta = mysqli_query($conexion,$_SESSION['tuvision_general_clientes']);
-		while(list($sucursal,$activos,$cancelados,$pendientes,$total) = mysqli_fetch_array($consulta)){
+		while(list($sucursal,$activos,$activosTV,$ActivosTVInt,$ActivosInt,$cancelados,$pendientes,$total) = mysqli_fetch_array($consulta)){
 			
 			$total_activos += $activos;
+			$total_activos_TV += $activosTV;
+			$total_activos_TV_Internet += $ActivosTVInt;
+			$total_activos_Internet += $ActivosInt;
 			$total_cancelados += $cancelados;
 			$total_pendientes += $pendientes;
 			$total = $activos + $cancelados + $pendientes;
@@ -54,20 +63,26 @@
 				$color = "bgcolor='#EEEEEE'";
 			
 			echo "<tr $color>";
-				echo "<td align='left'>".$sucursal."</td>";
-				echo "<td align='left'>".$activos."</td>";
-				echo "<td align='left'>".$cancelados."</td>";
-				echo "<td align='left'>".$pendientes."</td>";
-				echo "<td align='left'>".$total."</td>";
+				echo "<td align='center'>".$sucursal."</td>";
+				echo "<td align='center'>".$activos."</td>";
+				echo "<td align='center'>".$activosTV."</td>";
+				echo "<td align='center'>".$ActivosTVInt."</td>";
+				echo "<td align='center'>".$ActivosInt."</td>";
+				echo "<td align='center'>".$cancelados."</td>";
+				echo "<td align='center'>".$pendientes."</td>";
+				echo "<td align='center'>".$total."</td>";
 			echo "</tr>";
 			$contador++;
 		}
 		echo "<tr $color>";
-				echo "<td align='left'><b>TOTALES</b></td>";
-				echo "<td align='left'><b>".$total_activos."</b></td>";
-				echo "<td align='left'><b>".$total_cancelados."</b></td>";
-				echo "<td align='left'><b>".$total_pendientes."</b></td>";
-				echo "<td align='left'><b>".$total_total."</b></td>";
+				echo "<td align='center'><b>TOTALES</b></td>";
+				echo "<td align='center'><b>".$total_activos."</b></td>";
+				echo "<td align='center'><b>".$total_activos_TV."</b></td>";
+				echo "<td align='center'><b>".$total_activos_TV_Internet."</b></td>";
+				echo "<td align='center'><b>".$total_activos_Internet."</b></td>";
+				echo "<td align='center'><b>".$total_cancelados."</b></td>";
+				echo "<td align='center'><b>".$total_pendientes."</b></td>";
+				echo "<td align='center'><b>".$total_total."</b></td>";
 			echo "</tr>";
 ?>
  </table>

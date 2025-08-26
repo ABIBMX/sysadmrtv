@@ -33,7 +33,7 @@
 		$contador=0;
 		
 		$consulta = mysqli_query($conexion,$_SESSION['filtro_ingresos']);
-		while(list($id,$folio,$sucursal,$cliente,$nota,$monto,$observaciones, $fecha) = mysqli_fetch_array($consulta)){
+		while(list($id,$folio,$sucursal,$cliente,$nombre,$apellidop,$apellidom,$nota,$monto,$observaciones, $fecha) = mysqli_fetch_array($consulta)){
 			if($contador%2==0)
 				$color = "";
 			else
@@ -42,7 +42,7 @@
 			echo "<tr $color>";
 				echo "<td align='left'>".$folio."</td>";
 				echo "<td align='left'>".$sucursal."</td>";
-				echo "<td align='left'>".$cliente."</td>";
+				echo "<td align='left'>".$cliente." ".$nombre." ".$apellidop." ".$apellidom."</td>";
 				echo "<td align='left'>".$nota."</td>";
 				echo "<td align='left'>".$monto."</td>";
 				echo "<td align='left'>".$observaciones."</td>";

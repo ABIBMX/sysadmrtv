@@ -127,6 +127,9 @@
 				<tr class="tabla_columns">
                     <td>Sucursal</td>
                     <td>Activos</td>
+					<td>Activos con TV</td>
+					<td>Activos con TV + INTERNET</td>
+					<td>Activos con INTERNET</td>
                     <td>Cancelados</td>
                     <td>Pendientes de Instalar</td>
                     <td>Total</td>
@@ -170,6 +173,9 @@
 					
 						$query = "select distinct s.nombre,
 		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=1 and  c.id_tipo_status=t1.id_tipo_status and c.id_sucursal=s.id_sucursal ".$add_fecha.") as activos, 
+		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=1 and  c.id_tipo_status=t1.id_tipo_status and c.tipo_contratacion = 'SERVICIO TV' and c.id_sucursal=s.id_sucursal ".$add_fecha.") as activos_TV,
+		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=1 and  c.id_tipo_status=t1.id_tipo_status and c.tipo_contratacion = 'SERVICIO TV + INTERNET' and c.id_sucursal=s.id_sucursal ".$add_fecha.") as activos_TV_Internet, 
+		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=1 and  c.id_tipo_status=t1.id_tipo_status and c.tipo_contratacion in ('INSTALACION SOLO INTERNET', 'CAMBIO DE TV + INTERNET POR INTERNET') and c.id_sucursal=s.id_sucursal ".$add_fecha.") as activos_Internet,  
 		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=2 and  c.id_tipo_status=t1.id_tipo_status and c.id_sucursal=s.id_sucursal ".$add_fecha.") as cancelados,
 		(select count(id_cliente) from clientes c, tipo_status_cliente t1 where t1.id_status=3 and  c.id_tipo_status=t1.id_tipo_status and c.id_sucursal=s.id_sucursal ".$add_fecha.") as pendientes  
 	from sucursales s".$add_sucursal;
@@ -179,6 +185,9 @@
 						$tabla = mysqli_query($conexion,$query);
 						
 						$total_activos = 0;
+						$total_activos_TV = 0;
+						$total_activos_TV_Internet = 0;
+						$total_activos_Internet = 0;
 						$total_cancelados = 0;
 						$total_pendientes = 0;
 						$total_total = 0;
@@ -186,9 +195,13 @@
 						{
 							$bandera = true;
 							$total_activos += $registro[1];
-							$total_cancelados += $registro[2];
-							$total_pendientes += $registro[3];
-							$total = $registro[1] + $registro[2] + $registro[3];
+							$total_activos_TV += $registro[2];
+							$total_activos_TV_Internet += $registro[3];
+							$total_activos_Internet += $registro[4];
+							$total_cancelados += $registro[5];
+							$total_pendientes += $registro[6];
+
+							$total = $registro[1] + $registro[5] + $registro[6];
 							$total_total += $total;
 							?>
 								<tr class="tabla_row">
@@ -196,6 +209,9 @@
 									<td><?php echo $registro[1]; ?></td>
 									<td><?php echo $registro[2]; ?></td>
 									<td><?php echo $registro[3]; ?></td>
+									<td><?php echo $registro[4]; ?></td>
+									<td><?php echo $registro[5]; ?></td>
+									<td><?php echo $registro[6]; ?></td>
                                     <td><?php echo $total; ?></td>
 								</tr>
 							<?php
@@ -212,6 +228,9 @@
 								<tr class="tabla_row">
 									<td><b>TOTALES</b></td>
 									<td><b><?php echo $total_activos; ?></b></td>
+									<td><b><?php echo $total_activos_TV; ?></b></td>
+									<td><b><?php echo $total_activos_TV_Internet; ?></b></td>
+									<td><b><?php echo $total_activos_Internet; ?></b></td>
 									<td><b><?php echo $total_cancelados; ?></b></td>
 									<td><b><?php echo $total_pendientes; ?></b></td>
                                     <td><b><?php echo $total_total; ?></b></td>

@@ -546,7 +546,7 @@
 							$add_query .= " and m.id_ingreso=i.id_ingreso and m.id_tipo_ingreso='" . addslashes($_POST['tipo_ingreso']) . "' ";
 						}
 
-						$query = "select distinct i.id_ingreso,i.folio_nota, c.id_sucursal, i.id_cliente,nota_impresa, i.monto_total,substring(i.observaciones,1,100), i.fecha from ingresos i, clientes c " . $add_table . " where i.id_cliente= c.id_cliente " . $add_query . " and c.id_sucursal='" . $_SESSION['tuvision_id_sucursal'] . "' order by c.id_sucursal, i.fecha desc, i.id_ingreso desc";
+						$query = "select distinct i.id_ingreso,i.folio_nota, c.id_sucursal, i.id_cliente,c.nombre,c.apellido_paterno,c.apellido_materno,nota_impresa, i.monto_total,substring(i.observaciones,1,100), i.fecha from ingresos i, clientes c " . $add_table . " where i.id_cliente= c.id_cliente " . $add_query . " and c.id_sucursal='" . $_SESSION['tuvision_id_sucursal'] . "' order by c.id_sucursal, i.fecha desc, i.id_ingreso desc";
 
 
 
@@ -559,13 +559,13 @@
 							<tr class="tabla_row">
 								<td><?php echo $registro[1]; ?></td>
 								<td><?php echo $registro[2]; ?></td>
-								<td><?php echo $registro[3]; ?></td>
-								<td><?php echo $registro[4]; ?></td>
-								<td align="right"><?php echo $registro[5]; ?></td>
+								<td><?php echo $registro[3] ." ". $registro[4] ." ". $registro[5] ." ". $registro[6]; ?></td>
+								<td><?php echo $registro[7]; ?></td>
+								<td align="right"><?php echo $registro[8]; ?></td>
 								<td width="10px">&nbsp;</td>
-								<td align="center"><?php echo $registro[6]; ?></td>
+								<td align="center"><?php echo $registro[9]; ?></td>
 								<td width="10px">&nbsp;</td>
-								<td align="center"><?php echo $registro[7]; ?></td>
+								<td align="center"><?php echo $registro[10]; ?></td>
 								<td align="center"><input type="checkbox" name="<?php echo $registro[0];  ?>" /></td>
 							</tr>
 						<?php

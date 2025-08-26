@@ -27,6 +27,9 @@
 		$titles = array(
 		'sucursal'=>'<b>SUCURSAL</b>',
 		'activos'=>'<b>ACTIVOS</b>',
+		'activosTV'=>'<b>ACTIVOS CON TV</b>',
+		'activosTVInt'=>'<b>ACTIVOS CON TV + INTERNET</b>',
+		'activosInt'=>'<b>ACTIVOS CON INTERNET</b>',
 		'cancelados'=>'<b>CANCELADOS</b>',
 		'pendientes'=>'<b>PENDIENTES DE INSTALAR</b>',
 		'total'=>'<b>TOTAL</b>'
@@ -39,6 +42,9 @@
 		if($registro= mysqli_fetch_array($consulta))
 		{
 			$total_activos = 0;
+			$total_activos_TV = 0;
+			$total_activos_TV_Internet = 0;
+			$total_activos_Internet = 0;
 			$total_cancelados = 0;
 			$total_pendientes = 0;
 			$total_total = 0;
@@ -47,17 +53,21 @@
 			{
 				
 				$total_activos += $registro[1];
-				$total_cancelados += $registro[2];
-				$total_pendientes += $registro[3];
-				$total = $registro[1] + $registro[2] + $registro[3];
+				$total_activos_TV += $registro[2];
+				$total_activos_TV_Internet += $registro[3];
+				$total_activos_Internet += $registro[4];
+				$total_cancelados += $registro[5];
+				$total_pendientes += $registro[6];
+
+				$total = $registro[1] + $registro[5] + $registro[6];
 				$total_total += $total;
 				
-				$aux = array('sucursal'=>$registro[0],'activos'=>$registro[1],'cancelados'=>$registro[2],'pendientes'=>$registro[3],'total'=>$total);
+				$aux = array('sucursal'=>$registro[0],'activos'=>$registro[1],'activosTV'=>$registro[2],'activosTVInt'=>$registro[3],'activosInt'=>$registro[4],'cancelados'=>$registro[5],'pendientes'=>$registro[6],'total'=>$total);
 				
 				$data[] = $aux;
 			}while($registro= mysqli_fetch_array($consulta));
 			
-			$aux = array('sucursal'=>"<b>TOTALES</b>",'activos'=>"<b>".$total_activos."</b>",'cancelados'=>"<b>".$total_cancelados."</b>",'pendientes'=>"<b>".$total_pendientes."</b>",'total'=>"<b>".$total_total."</b>");
+			$aux = array('sucursal'=>"<b>TOTALES</b>",'activos'=>"<b>".$total_activos."</b>", 'activosTV'=>"<b>".$total_activos_TV."</b>",'activosTVInt'=>"<b>".$total_activos_TV_Internet."</b>",'activosInt'=>"<b>".$total_activos_Internet."</b>",'cancelados'=>"<b>".$total_cancelados."</b>",'pendientes'=>"<b>".$total_pendientes."</b>",'total'=>"<b>".$total_total."</b>");
 			$data[] = $aux;
 			
 		}
