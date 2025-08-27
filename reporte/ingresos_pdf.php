@@ -42,7 +42,7 @@
 		{
 			do
 			{
-				$aux = array('folio'=>$registro[1],'sucursal'=>$registro[2],'cliente'=>$registro[3],'nota'=>$registro[4],'monto'=>$registro[5],'observaciones'=>$registro[6],'fecha'=>$registro[7]);
+				$aux = array('folio'=>$registro[1],'sucursal'=>$registro[2],'cliente'=>$registro[3] . ' ' . $registro[4] . ' ' . $registro[5] . ' ' . $registro[6],'nota'=>$registro[7],'monto'=>$registro[8],'observaciones'=>$registro[9],'fecha'=>$registro[10]);
 				
 				
 				$data[] = $aux;
@@ -76,8 +76,16 @@
 		$pdf->ezStartPageNumbers(300,4,8,'',"<b>Fecha:</b> ".date("d/m/Y")." <b>Hora:</b> ".date("H:i:s")."  <b>P�gina</b> {PAGENUM} <b>de</b> {TOTALPAGENUM}",1); 	
 		
 		$pdf->ezTable($data, $titles, '',$options,600);
-	
 
-		$pdf->ezStream(array("Content-Disposition"=>$filename."_".date("d/m/Y").".pdf","compress"=>0));
+		$nombreArchivo = "ingresos.pdf";
+
+		header("Content-Type: application/pdf");
+		header("Content-Disposition: inline; filename=\"$nombreArchivo\"");
+		header("Cache-Control: private, must-revalidate, max-age=0");
+		header("Pragma: public");
+
+		// Aquí SÓLO compress
+		$pdf->ezStream(array("compress" => 0));
+
 
 ?>
