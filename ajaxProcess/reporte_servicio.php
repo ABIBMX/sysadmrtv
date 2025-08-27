@@ -164,17 +164,26 @@ if ($data == "clientes") {
 } else if ($data == "nota") {
 
 	if ($val1 != "undefined") {
-		$query = "select id_ingreso,folio_nota from ingresos where id_cliente='$val1'";
+		// $query = "select id_ingreso,folio_nota,fecha from ingresos where id_cliente='$val1'";
+		$query = "SELECT i.id_ingreso, i.folio_nota, i.fecha, ti.descripcion 
+          FROM ingresos AS i
+          INNER JOIN montos AS m ON i.id_ingreso = m.id_ingreso
+          INNER JOIN cat_tipo_ingreso AS ti ON m.id_tipo_ingreso = ti.id_tipo_ingreso 
+          WHERE i.id_cliente = '$val1'
+          ORDER BY i.id_ingreso DESC";
 
-		echo "<select name='folio' style='width:300px; font-size:12px;' onchange=\"_Ajax('servicio','nota',this.value);\">";
+		echo "<select name='folio' style='width:600px; font-size:12px;' onchange=\"_Ajax('servicio','nota',this.value);\">";
 		echo "<option value='null'>Seleccione un folio</option>";
 
 		$result = mysqli_query($conexion, $query);
-		while (list($id, $nombre) = mysqli_fetch_array($result)) {
+		while (list($id, $nombre, $fecha,$servicio) = mysqli_fetch_array($result)) {
+
+			$texto = "Folio: ".$nombre . " - Fecha: " . $fecha . " - Servicio: " . $servicio;
+
 			if ($id == $val2)
-				echo "<option value='$id' selected>$nombre</option>";
+				echo "<option value='$id' selected>$texto</option>";
 			else
-				echo "<option value='$id'>$nombre</option>";
+				echo "<option value='$id'>$texto</option>";
 		}
 		echo "</select>";
 	} else {
