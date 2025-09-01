@@ -206,7 +206,7 @@
 				$_POST['apellido_paterno'] = addslashes(strtoupper($_POST['apellido_paterno']));
 				$_POST['apellido_materno'] = addslashes(strtoupper($_POST['apellido_materno']));
 				$_POST['numero'] = addslashes(strtoupper($_POST['numero']));
-				$_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
+				// $_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
 				$_POST['num_contrato'] = addslashes(strtoupper($_POST['num_contrato']));
 				$_POST['fecha_contrato'] = addslashes(strtoupper($_POST['fecha_contrato']));
 				$_POST['referencia_casa'] = addslashes(strtoupper($_POST['referencia_casa']));
@@ -221,7 +221,7 @@
 					$tap = "NULL";
 				}
 
-				$query = "update clientes set nombre='" . $_POST['nombre'] . "',apellido_paterno='" . $_POST['apellido_paterno'] . "', apellido_materno='" . $_POST['apellido_materno'] . "', numero='" . $_POST['numero'] . "', tarifa=" . $_POST['tarifa'] . ", id_calle=" . $_POST['calle'] . ",  num_contrato='" . $_POST['num_contrato'] . "', fecha_contrato='" . $_POST['fecha_contrato'] . "', referencia_casa='" . $_POST['referencia_casa'] . "', id_tap=" . $tap . ", colonia='" . $_POST['colonia'] . "',numero_interior='" . $_POST['numero_interior'] . "',cp='" . $_POST['cp'] . "',telefono='" . $_POST['telefono'] . "',rfc='" . $_POST['rfc'] . "',correo='" . $_POST['email'] . "' , tipo_contratacion = '".$_POST['tipo_contratacion'] ."'  where id_cliente='" . addslashes($_POST['id']) . "'";
+				$query = "update clientes set nombre='" . $_POST['nombre'] . "',apellido_paterno='" . $_POST['apellido_paterno'] . "', apellido_materno='" . $_POST['apellido_materno'] . "', numero='" . $_POST['numero'] . "', id_calle=" . $_POST['calle'] . ",  num_contrato='" . $_POST['num_contrato'] . "', fecha_contrato='" . $_POST['fecha_contrato'] . "', referencia_casa='" . $_POST['referencia_casa'] . "', id_tap=" . $tap . ", colonia='" . $_POST['colonia'] . "',numero_interior='" . $_POST['numero_interior'] . "',cp='" . $_POST['cp'] . "',telefono='" . $_POST['telefono'] . "',rfc='" . $_POST['rfc'] . "',correo='" . $_POST['email'] . "' , tipo_contratacion = '".$_POST['tipo_contratacion'] ."'  where id_cliente='" . addslashes($_POST['id']) . "'";
 
 				if (mysqli_query($conexion, $query)) {
 	?>

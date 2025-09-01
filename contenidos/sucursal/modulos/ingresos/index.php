@@ -443,10 +443,10 @@
 
 						//actualizar la tarifa del cliente
 
-						if ($_POST['tarifa_cliente'] != "" || $_POST['tarifa_cliente'] != null) {
-							$update_tarifa = "UPDATE clientes SET tarifa = '" . addslashes($_POST['tarifa_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-							mysqli_query($conexion, $update_tarifa);
-						}
+						// if ($_POST['tarifa_cliente'] != "" || $_POST['tarifa_cliente'] != null) {
+						// 	$update_tarifa = "UPDATE clientes SET tarifa = '" . addslashes($_POST['tarifa_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
+						// 	mysqli_query($conexion, $update_tarifa);
+						// }
 	?>
 						<tr>
 							<td colspan="3" align="center">

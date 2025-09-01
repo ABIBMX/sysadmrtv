@@ -18,7 +18,7 @@ if (isset($_POST['tipo_ingreso'])) {
 	$bandera = false;
 	while ($registro = mysqli_fetch_array($tabla)) {
 		$bandera = true;
-		$cadena .= "<option value=\"" . $registro[0] . "\">" . $registro[1] . " " . $registro[2] . "%</option>";
+		$cadena .= "<option value=\"" . $registro[0] . "\">" . $registro[1] . " - $ " . $registro[2] . "</option>";
 	}
 	$cadena .= "</select>";
 
@@ -71,9 +71,9 @@ if (isset($_POST['cliente_tarifa'])) {
 
 		if ($resultado_datos['tarifa'] != "" || $resultado_datos['tarifa'] != null) {
 
-			echo "<td>Tarifa: </td><td><input type='text' style='margin-top:4px;margin-bottom:2px;width:100px' name='tarifa_cliente' value='" . $resultado_datos['tarifa'] . "' oninput=\"this.value=this.value.replace(/[^0-9.]/g,'')\"/></td>";
+			echo "<td>Tarifa: </td><td><input type='text' disabled style='margin-top:4px;margin-bottom:2px;width:100px' name='tarifa_cliente' value='" . $resultado_datos['tarifa'] . "' oninput=\"this.value=this.value.replace(/[^0-9.]/g,'')\"/></td>";
 		} else {
-			echo "<td>Tarifa: </td><td><input type='text' style='margin-top:4px;margin-bottom:2px;width:300px' name='tarifa_cliente' value='' placeholder='El cliente no cuenta con una tarifa, ingrese una' oninput=\"this.value=this.value.replace(/[^0-9.]/g,'')\"/></td>";
+			echo "<td>Tarifa: </td><td><input type='text' disabled style='margin-top:4px;margin-bottom:2px;width:300px' name='tarifa_cliente' value='' placeholder='El cliente no cuenta con una tarifa' oninput=\"this.value=this.value.replace(/[^0-9.]/g,'')\"/></td>";
 		}
 	}
 }

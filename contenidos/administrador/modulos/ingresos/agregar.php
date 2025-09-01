@@ -125,7 +125,8 @@
 				data: cdata,
 				success: function(datos) {
 
-					var calculo = monto.value - ((monto.value * datos) / 100);
+					// var calculo = monto.value - ((monto.value * datos) / 100);
+					var calculo = monto.value - datos;
 					total.innerHTML = calculo;
 					sumarTotales();
 				}

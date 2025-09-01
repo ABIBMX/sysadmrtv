@@ -76,7 +76,7 @@
                                 </td>
                             </tr>                      	
                             <tr><td>Nombre</td><td><input name="descripcion" style="width:300px;font-size:12px;" type="text" maxlength="255" /></td></tr> 
-                            <tr><td>Descuento</td><td><input name="porcentaje" style="width:50px;font-size:12px;" onblur="solo_numeros(this)" onkeyup="solo_numeros(this)" type="text" maxlength="255" /> %</td></tr>
+                            <tr><td>Descuento </td><td>$ <input name="porcentaje" style="width:50px;font-size:12px;" onblur="solo_numeros(this)" onkeyup="solo_numeros(this)" type="text" maxlength="255" /></td></tr>
                             <tr>
                             	<td>
                                 	Estado

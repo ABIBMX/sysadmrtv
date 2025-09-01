@@ -221,13 +221,13 @@
 				<tr><td colspan="5" height="3px" class="separador"></td></tr>
 				<tr class="tabla_columns">
                     <td>Nombre</td>
-                    <td>Porcentaje</td>
+                    <td>Cantidad</td>
                     <td>Tipo de Ingreso</td>
                     <td align="center">Activo</td>
 					<td align="center" width="50px"><input type="checkbox" name="selector" onclick="seleccionar()" /><input type='hidden'name='accion'/></td>
 				</tr>
 				<?php
-					$query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso";
+					$query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso ORDER BY p.activo DESC";
 					$tabla = mysqli_query($conexion,$query);
 					while($registro=mysqli_fetch_array($tabla))
 					{
@@ -235,7 +235,7 @@
 						?>
 							<tr class="tabla_row">
 								<td><a href="index.php?menu=26&accion=editar&id=<?php echo $registro[0];  ?>"><?php echo $registro[2]; ?></a></td>
-                                <td><?php echo $registro[3]; ?> %</td>
+                                <td>$ <?php echo $registro[3]; ?></td>
                                 <td><?php echo $registro[1]; ?></td>
                                 <td align="center"><?php
 									if($registro[4]=="1")

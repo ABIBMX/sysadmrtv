@@ -247,7 +247,7 @@
 										</tr>
 										<tr>
 											<td>Tarifa $</td>
-											<td><input name="tarifa" onchange="solo_numeros_decimales(this)" onkeyup="solo_numeros_decimales(this)" value="<?php echo $registro[8]; ?>" style="width:50px;font-size:12px;" type="text" maxlength="7" /></td>
+											<td><input name="tarifa" disabled onchange="solo_numeros_decimales(this)" onkeyup="solo_numeros_decimales(this)" value="<?php echo $registro[8]; ?>" style="width:50px;font-size:12px;" type="text" maxlength="7" /></td>
 										</tr>
 										<tr>
 											<td>No. Contrato</td>
