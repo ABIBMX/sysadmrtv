@@ -69,6 +69,7 @@
 								case 34: include("contenidos/administrador/proveedores.php");break;
 								case 35: include("contenidos/administrador/catalogo_auditoria.php");break;
 								case 36: include("contenidos/administrador/canales.php");break;
+								case 37: include("contenidos/administrador/conceptos.php");break;
 								default: include("contenidos/administrador/index.php");break;
 								
 								

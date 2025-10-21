@@ -194,6 +194,7 @@
 		if (id_cliente != '' || id_cliente != null) {
 
 			clienteSelectTarifa(id_cliente);
+			clienteSelectCurp(id_cliente);
 
 			div_client.innerHTML = "<img src='imagenes/loading.gif' /> <span style='font-size:10px;'>Cargando Telefono...</span>";
 			var cliente_telefono = "cliente_telefono=" + id_cliente;
@@ -233,6 +234,30 @@
 			});
 		} else {
 			div_tarifa.innerHTML = "Es necesario seleccionar un cliente";
+		}
+	}
+
+	function clienteSelectCurp(id_cliente) {
+
+		bandera_curp = false;
+		var div_curp = document.getElementById('curp');
+		var id_cliente = id_cliente;
+		if (id_cliente != '' || id_cliente != null) {
+
+			div_curp.innerHTML = "<img src='imagenes/loading.gif' /> <span style='font-size:10px;'>Cargando CURP...</span>";
+			var cliente_curp = "cliente_curp=" + id_cliente;
+
+			$.ajax({
+				type: "POST",
+				url: "ajaxProcess/ingreso_promociones.php",
+				data: cliente_curp,
+				success: function(datos) {
+					div_curp.innerHTML = datos;
+					bandera_curp = true;
+				}
+			});
+		} else {
+			div_curp.innerHTML = "Es necesario seleccionar un cliente";
 		}
 	}
 
@@ -304,7 +329,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="button" value="Mostrar Numero Celular y Tarifa" style="font-size:12px;margin-left:6px" id="agregar_concepto" onclick="clienteSelect();" />
+							<input type="button" value="Mostrar Numero Celular, Curp y Tarifa" style="font-size:12px;margin-left:6px" id="agregar_concepto" onclick="clienteSelect();" />
 						</td>
 					</tr>
 
@@ -321,6 +346,13 @@
 						<!-- div para mostrar la tarifa -->
 						<td>
 							<div id="tarifa">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<!-- div para mostrar la tarifa -->
+						<td>
+							<div id="curp">
 							</div>
 						</td>
 					</tr>

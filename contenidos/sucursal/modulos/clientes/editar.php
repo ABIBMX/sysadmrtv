@@ -40,8 +40,11 @@
 		if (document.formulario.fecha_contrato.value == '')
 			cadena += "\n* Debe asignar una Fecha de Contrato.";
 
-		if(document.formulario.telefono.value=='' || document.formulario.telefono.value.length<10)
-			cadena+= "\n* El Telefono debe tener 10 digitos Y no debe estar vacio.";
+		if (document.formulario.telefono.value == '' || document.formulario.telefono.value.length < 10)
+			cadena += "\n* El Telefono debe tener 10 digitos Y no debe estar vacio.";
+
+		if (document.formulario.rfc.value == '' || document.formulario.rfc.value.length < 18)
+			cadena += "\n* La CURP debe tener 18 digitos Y no debe estar vacio.";
 
 		if (cadena == "") {
 			document.formulario.submit();
@@ -170,8 +173,8 @@
 											<td><input name="telefono" style="width:300px;font-size:12px;" type="text" maxlength="10" minlength="10" onchange="solo_numeros(this)" onkeyup="solo_numeros(this)" value="<?php echo $registro[18]; ?>" /></td>
 										</tr>
 										<tr>
-											<td>R.F.C.</td>
-											<td><input name="rfc" style="width:300px;font-size:12px;" type="text" value="<?php echo $registro[19]; ?>" maxlength="13" /></td>
+											<td>CURP</td>
+											<td><input name="rfc" style="width:300px;font-size:12px;" type="text" value="<?php echo $registro[19]; ?>" maxlength="18" /></td>
 										</tr>
 										<tr>
 											<td>EMAIL</td>

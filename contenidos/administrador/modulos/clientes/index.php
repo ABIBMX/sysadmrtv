@@ -50,8 +50,8 @@
 		if (seleccionados.length >= 2) {
 			window.alert("No puedes seleccionar más de dos.");
 		} else if (seleccionados.length === 1) {
-		    
-		    console.log(seleccionados[0]);
+
+			console.log(seleccionados[0]);
 
 			if (seleccionados[0] == 'SERVICIO TV + INTERNET' || seleccionados[0] == 'INSTALACION SOLO INTERNET' || seleccionados[0] == 'CAMBIO DE TV + INTERNET POR INTERNET') {
 				document.datagrid.action = "index.php?menu=10&accion=configurar"
@@ -211,6 +211,7 @@
 				$_POST['apellido_paterno'] = addslashes(strtoupper($_POST['apellido_paterno']));
 				$_POST['apellido_materno'] = addslashes(strtoupper($_POST['apellido_materno']));
 				$_POST['numero'] = addslashes(strtoupper($_POST['numero']));
+				$_POST['rfc'] = addslashes(strtoupper($_POST['rfc']));
 				$_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
 				$_POST['num_contrato'] = addslashes(strtoupper($_POST['num_contrato']));
 				$_POST['fecha_contrato'] = addslashes(strtoupper($_POST['fecha_contrato']));
@@ -227,7 +228,7 @@
 					$tap = "NULL";
 				}
 
-				$query = "update clientes set nombre='" . $_POST['nombre'] . "',apellido_paterno='" . $_POST['apellido_paterno'] . "', apellido_materno='" . $_POST['apellido_materno'] . "', numero='" . $_POST['numero'] . "', tarifa=" . $_POST['tarifa'] . ", id_calle=" . $_POST['calle'] . ", id_sucursal='" . $_POST['sucursal'] . "', num_contrato='" . $_POST['num_contrato'] . "', fecha_contrato='" . $_POST['fecha_contrato'] . "', referencia_casa='" . $_POST['referencia_casa'] . "', id_tap=" . $tap . ", colonia='" . $_POST['colonia'] . "',numero_interior='" . $_POST['numero_interior'] . "',cp='" . $_POST['cp'] . "',telefono='" . $_POST['telefono'] . "',rfc='" . $_POST['rfc'] . "',correo='" . $_POST['email'] . "', tipo_contratacion = '".$_POST['tipo_contratacion'] ."'   where id_cliente='" . addslashes($_POST['id']) . "'";
+				$query = "update clientes set nombre='" . $_POST['nombre'] . "',apellido_paterno='" . $_POST['apellido_paterno'] . "', apellido_materno='" . $_POST['apellido_materno'] . "', numero='" . $_POST['numero'] . "', tarifa=" . $_POST['tarifa'] . ", id_calle=" . $_POST['calle'] . ", id_sucursal='" . $_POST['sucursal'] . "', num_contrato='" . $_POST['num_contrato'] . "', fecha_contrato='" . $_POST['fecha_contrato'] . "', referencia_casa='" . $_POST['referencia_casa'] . "', id_tap=" . $tap . ", colonia='" . $_POST['colonia'] . "',numero_interior='" . $_POST['numero_interior'] . "',cp='" . $_POST['cp'] . "',telefono='" . $_POST['telefono'] . "',rfc='" . $_POST['rfc'] . "',correo='" . $_POST['email'] . "', tipo_contratacion = '" . $_POST['tipo_contratacion'] . "'   where id_cliente='" . addslashes($_POST['id']) . "'";
 
 				if (mysqli_query($conexion, $query)) {
 	?>
@@ -269,6 +270,7 @@
 				$_POST['apellido_paterno'] = addslashes(strtoupper($_POST['apellido_paterno']));
 				$_POST['apellido_materno'] = addslashes(strtoupper($_POST['apellido_materno']));
 				$_POST['numero'] = addslashes(strtoupper($_POST['numero']));
+				$_POST['rfc'] = addslashes(strtoupper($_POST['rfc']));
 				$_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
 				$_POST['num_contrato'] = addslashes(strtoupper($_POST['num_contrato']));
 				$_POST['fecha_contrato'] = addslashes(strtoupper($_POST['fecha_contrato']));
@@ -456,161 +458,161 @@
 						// $query = "select c.id_cliente, concat(c.nombre,' ',c.apellido_paterno,' ',c.apellido_materno), s.nombre, sc.descripcion, tsc.descripcion, c.tipo_contratacion, c.fecha_contrato, c.fecha_activacion, c.tipo_contratacion, c.configuracion_internet from clientes c, sucursales s, estatus_cliente sc, tipo_status_cliente tsc where c.id_sucursal= s.id_sucursal and c.id_tipo_status = tsc.id_tipo_status and tsc.id_status= sc.id_status " . $add_query . " order by c.id_sucursal asc, c.id_cliente asc";
 
 						//Segunda consulta trayendo el ultimo reporte de servicio
-// 						$query = "SELECT
-//     c.id_cliente,
-//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
-//     s.nombre AS nombre_sucursal,
-//     sc.descripcion AS estatus_cliente,
-//     tsc.descripcion AS tipo_estatus_cliente,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     c.configuracion_internet,
-//     MAX(rs.fecha_reporte) AS ultimo_fecha_reporte,
-//     MAX(ess.descripcion) AS ultimo_estatus_servicio,
-//     COALESCE(MAX(cts.descripcion), 'Sin reporte') AS ultimo_tipo_servicio
-// FROM
-//     clientes c
-// JOIN
-//     sucursales s ON c.id_sucursal = s.id_sucursal
-// JOIN
-//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
-// JOIN
-//     estatus_cliente sc ON tsc.id_status = sc.id_status
-// LEFT JOIN (
-//     SELECT
-//         id_cliente,
-//         MAX(fecha_reporte) AS max_fecha_reporte
-//     FROM
-//         reporte_servicios
-//     GROUP BY
-//         id_cliente
-// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
-// LEFT JOIN
-//     reporte_servicios rs ON c.id_cliente = rs.id_cliente AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
-// LEFT JOIN
-//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
-// LEFT JOIN
-//     cat_tipo_servicios cts ON
-//         CASE
-//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     rel_tipo_ingreso_servicio
-//                 WHERE
-//                     id_tipo_ingreso IN (
-//                         SELECT
-//                             id_tipo_ingreso
-//                         FROM
-//                             montos
-//                         WHERE
-//                             id_ingreso = rs.id_ingreso
-//                     )
-//             )
-//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     cliente_servicios
-//                 WHERE
-//                     id_reporte = rs.id_reporte
-//                 LIMIT 1
-//             )
-//         END
-// WHERE
-//     1 = 1 " . $add_query . "
-// GROUP BY
-//     c.id_cliente,
-//     nombre_completo,
-//     nombre_sucursal,
-//     estatus_cliente,
-//     tipo_estatus_cliente,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     c.configuracion_internet
-// ORDER BY
-//     c.id_sucursal ASC,
-//     c.id_cliente ASC";
+						// 						$query = "SELECT
+						//     c.id_cliente,
+						//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
+						//     s.nombre AS nombre_sucursal,
+						//     sc.descripcion AS estatus_cliente,
+						//     tsc.descripcion AS tipo_estatus_cliente,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     c.configuracion_internet,
+						//     MAX(rs.fecha_reporte) AS ultimo_fecha_reporte,
+						//     MAX(ess.descripcion) AS ultimo_estatus_servicio,
+						//     COALESCE(MAX(cts.descripcion), 'Sin reporte') AS ultimo_tipo_servicio
+						// FROM
+						//     clientes c
+						// JOIN
+						//     sucursales s ON c.id_sucursal = s.id_sucursal
+						// JOIN
+						//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
+						// JOIN
+						//     estatus_cliente sc ON tsc.id_status = sc.id_status
+						// LEFT JOIN (
+						//     SELECT
+						//         id_cliente,
+						//         MAX(fecha_reporte) AS max_fecha_reporte
+						//     FROM
+						//         reporte_servicios
+						//     GROUP BY
+						//         id_cliente
+						// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
+						// LEFT JOIN
+						//     reporte_servicios rs ON c.id_cliente = rs.id_cliente AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
+						// LEFT JOIN
+						//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
+						// LEFT JOIN
+						//     cat_tipo_servicios cts ON
+						//         CASE
+						//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     rel_tipo_ingreso_servicio
+						//                 WHERE
+						//                     id_tipo_ingreso IN (
+						//                         SELECT
+						//                             id_tipo_ingreso
+						//                         FROM
+						//                             montos
+						//                         WHERE
+						//                             id_ingreso = rs.id_ingreso
+						//                     )
+						//             )
+						//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     cliente_servicios
+						//                 WHERE
+						//                     id_reporte = rs.id_reporte
+						//                 LIMIT 1
+						//             )
+						//         END
+						// WHERE
+						//     1 = 1 " . $add_query . "
+						// GROUP BY
+						//     c.id_cliente,
+						//     nombre_completo,
+						//     nombre_sucursal,
+						//     estatus_cliente,
+						//     tipo_estatus_cliente,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     c.configuracion_internet
+						// ORDER BY
+						//     c.id_sucursal ASC,
+						//     c.id_cliente ASC";
 
 						//Tercera consulta trayendo el ultimo reporte de servicio pero solo estado atendido
-// 						$query = "SELECT
-//     c.id_cliente,
-//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
-//     s.nombre AS nombre_sucursal,
-//     sc.descripcion AS estatus_cliente,
-//     tsc.descripcion AS tipo_estatus_cliente,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     c.configuracion_internet,
-//     rs.fecha_reporte AS ultimo_fecha_reporte,
-//     ess.descripcion AS ultimo_estatus_servicio,
-//     COALESCE(cts.descripcion, 'Sin reporte') AS ultimo_tipo_servicio
-// FROM
-//     clientes c
-// JOIN
-//     sucursales s ON c.id_sucursal = s.id_sucursal
-// JOIN
-//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
-// JOIN
-//     estatus_cliente sc ON tsc.id_status = sc.id_status
-// LEFT JOIN (
-//     SELECT
-//         id_cliente,
-//         MAX(fecha_reporte) AS max_fecha_reporte
-//     FROM
-//         reporte_servicios
-//     WHERE
-//         id_estatus_servicio = 2 
-//     GROUP BY
-//         id_cliente
-// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
-// LEFT JOIN
-//     reporte_servicios rs ON 
-//     c.id_cliente = rs.id_cliente 
-//     AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
-//     AND rs.id_estatus_servicio = 2 
-// LEFT JOIN
-//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
-// LEFT JOIN
-//     cat_tipo_servicios cts ON
-//         CASE
-//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     rel_tipo_ingreso_servicio
-//                 WHERE
-//                     id_tipo_ingreso IN (
-//                         SELECT
-//                             id_tipo_ingreso
-//                         FROM
-//                             montos
-//                         WHERE
-//                             id_ingreso = rs.id_ingreso
-//                     )
-//             )
-//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     cliente_servicios
-//                 WHERE
-//                     id_reporte = rs.id_reporte
-//                 LIMIT 1
-//             )
-//         END
-// WHERE
-//     1 = 1 " . $add_query . "
-// ORDER BY
-//     c.id_sucursal ASC,
-//     c.id_cliente ASC";
+						// 						$query = "SELECT
+						//     c.id_cliente,
+						//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
+						//     s.nombre AS nombre_sucursal,
+						//     sc.descripcion AS estatus_cliente,
+						//     tsc.descripcion AS tipo_estatus_cliente,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     c.configuracion_internet,
+						//     rs.fecha_reporte AS ultimo_fecha_reporte,
+						//     ess.descripcion AS ultimo_estatus_servicio,
+						//     COALESCE(cts.descripcion, 'Sin reporte') AS ultimo_tipo_servicio
+						// FROM
+						//     clientes c
+						// JOIN
+						//     sucursales s ON c.id_sucursal = s.id_sucursal
+						// JOIN
+						//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
+						// JOIN
+						//     estatus_cliente sc ON tsc.id_status = sc.id_status
+						// LEFT JOIN (
+						//     SELECT
+						//         id_cliente,
+						//         MAX(fecha_reporte) AS max_fecha_reporte
+						//     FROM
+						//         reporte_servicios
+						//     WHERE
+						//         id_estatus_servicio = 2 
+						//     GROUP BY
+						//         id_cliente
+						// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
+						// LEFT JOIN
+						//     reporte_servicios rs ON 
+						//     c.id_cliente = rs.id_cliente 
+						//     AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
+						//     AND rs.id_estatus_servicio = 2 
+						// LEFT JOIN
+						//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
+						// LEFT JOIN
+						//     cat_tipo_servicios cts ON
+						//         CASE
+						//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     rel_tipo_ingreso_servicio
+						//                 WHERE
+						//                     id_tipo_ingreso IN (
+						//                         SELECT
+						//                             id_tipo_ingreso
+						//                         FROM
+						//                             montos
+						//                         WHERE
+						//                             id_ingreso = rs.id_ingreso
+						//                     )
+						//             )
+						//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     cliente_servicios
+						//                 WHERE
+						//                     id_reporte = rs.id_reporte
+						//                 LIMIT 1
+						//             )
+						//         END
+						// WHERE
+						//     1 = 1 " . $add_query . "
+						// ORDER BY
+						//     c.id_sucursal ASC,
+						//     c.id_cliente ASC";
 
-	//Cuarta consulta para la table de clientes trayendo el ultimo reporte de servicios con estado atendido y el ultimo ingreso de inscripcion
+						//Cuarta consulta para la table de clientes trayendo el ultimo reporte de servicios con estado atendido y el ultimo ingreso de inscripcion
 
-	$query = "
+						$query = "
 SELECT 
     c.id_cliente, 
     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS Cliente, 
@@ -656,9 +658,9 @@ WHERE 1 = 1
 ORDER BY c.id_sucursal ASC, c.id_cliente ASC";
 
 
-	
-	
-	//Primer consulta para el PDF
+
+
+						//Primer consulta para el PDF
 
 						//$query2 = "select c.id_cliente, concat(c.nombre,' ',c.apellido_paterno,' ',c.apellido_materno),c.telefono,s.nombre, sc.descripcion, tsc.descripcion,c.tipo_contratacion, c.fecha_contrato, c.fecha_activacion, concat(tap.id_tap,'-',tap.valor,'-',tap.salidas), cc.nombre, c.numero, c.referencia_casa  from clientes c, sucursales s, estatus_cliente sc, tipo_status_cliente tsc, tap, cat_calles cc where cc.id_calle=c.id_calle and tap.id_tap=c.id_tap and c.id_sucursal= s.id_sucursal and c.id_tipo_status = tsc.id_tipo_status and tsc.id_status= sc.id_status " . $add_query . " order by c.id_sucursal asc, c.id_cliente asc";
 
@@ -702,239 +704,239 @@ ORDER BY c.id_sucursal ASC, c.id_cliente ASC";
 
 						//Segunda consulta para el PDF trayendo el ultimo reporte de servicio
 
-// 						$query2 ="SELECT
-//     c.id_cliente,
-//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
-//     c.telefono,
-//     s.nombre AS sucursal,
-//     sc.descripcion AS estatus_cliente,
-//     tsc.descripcion AS tipo_status,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     CONCAT(tap.id_tap, '-', tap.valor, '-', tap.salidas) AS tap_info,
-//     cc.nombre AS calle,
-//     c.numero,
-//     c.referencia_casa,
-//     COALESCE(
-//         (
-//             SELECT
-//                 t2.saldo_actual
-//             FROM
-//                 transacciones t2
-//             WHERE
-//                 t2.id_cliente = c.id_cliente
-//             ORDER BY
-//                 t2.id_transaccion DESC
-//             LIMIT 1
-//         ),
-//         0
-//     ) AS saldo_actual,
-//     COALESCE(ci.winbox, '---') AS winbox,
-//     COALESCE(ci.mac_winbox, '---') AS mac_winbox,
-//     COALESCE(ci.plan_datos, '---') AS plan_datos,
-//     COALESCE(ci.ip_asignada_instalacion, '---') AS ip_asignada_instalacion,
-//     MAX(rs.fecha_reporte) AS ultimo_fecha_reporte,
-//     MAX(ess.descripcion) AS ultimo_estatus_servicio,
-//     COALESCE(MAX(cts.descripcion), 'Sin reporte') AS ultimo_tipo_servicio
-// FROM
-//     clientes c
-// LEFT JOIN
-//     sucursales s ON c.id_sucursal = s.id_sucursal
-// LEFT JOIN
-//     estatus_cliente sc ON sc.id_status = (
-//         SELECT
-//             tsc.id_status
-//         FROM
-//             tipo_status_cliente tsc
-//         WHERE
-//             tsc.id_tipo_status = c.id_tipo_status
-//     )
-// LEFT JOIN
-//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
-// LEFT JOIN
-//     tap ON tap.id_tap = c.id_tap
-// LEFT JOIN
-//     cat_calles cc ON cc.id_calle = c.id_calle
-// LEFT JOIN
-//     conf_internet ci ON ci.id_cliente = c.id_cliente
-// LEFT JOIN (
-//     SELECT
-//         id_cliente,
-//         MAX(fecha_reporte) AS max_fecha_reporte
-//     FROM
-//         reporte_servicios
-//     GROUP BY
-//         id_cliente
-//     ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
-// LEFT JOIN
-//     reporte_servicios rs ON c.id_cliente = rs.id_cliente AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
-// LEFT JOIN
-//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
-// LEFT JOIN
-//     cat_tipo_servicios cts ON
-//         CASE
-//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     rel_tipo_ingreso_servicio
-//                 WHERE
-//                     id_tipo_ingreso IN (
-//                         SELECT
-//                             id_tipo_ingreso
-//                         FROM
-//                             montos
-//                         WHERE
-//                             id_ingreso = rs.id_ingreso
-//                     )
-//             )
-//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     cliente_servicios
-//                 WHERE
-//                     id_reporte = rs.id_reporte
-//                 LIMIT 1
-//             )
-//         END
-// WHERE
-//     1 = 1
-//     $add_query
-// GROUP BY
-//     c.id_cliente,
-//     nombre_completo,
-//     c.telefono,
-//     sucursal,
-//     estatus_cliente,
-//     tipo_status,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     tap_info,
-//     calle,
-//     c.numero,
-//     c.referencia_casa,
-//     winbox,
-//     mac_winbox,
-//     plan_datos,
-//     ip_asignada_instalacion
-// ORDER BY
-//     c.id_sucursal ASC,
-//     c.id_cliente ASC";
+						// 						$query2 ="SELECT
+						//     c.id_cliente,
+						//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
+						//     c.telefono,
+						//     s.nombre AS sucursal,
+						//     sc.descripcion AS estatus_cliente,
+						//     tsc.descripcion AS tipo_status,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     CONCAT(tap.id_tap, '-', tap.valor, '-', tap.salidas) AS tap_info,
+						//     cc.nombre AS calle,
+						//     c.numero,
+						//     c.referencia_casa,
+						//     COALESCE(
+						//         (
+						//             SELECT
+						//                 t2.saldo_actual
+						//             FROM
+						//                 transacciones t2
+						//             WHERE
+						//                 t2.id_cliente = c.id_cliente
+						//             ORDER BY
+						//                 t2.id_transaccion DESC
+						//             LIMIT 1
+						//         ),
+						//         0
+						//     ) AS saldo_actual,
+						//     COALESCE(ci.winbox, '---') AS winbox,
+						//     COALESCE(ci.mac_winbox, '---') AS mac_winbox,
+						//     COALESCE(ci.plan_datos, '---') AS plan_datos,
+						//     COALESCE(ci.ip_asignada_instalacion, '---') AS ip_asignada_instalacion,
+						//     MAX(rs.fecha_reporte) AS ultimo_fecha_reporte,
+						//     MAX(ess.descripcion) AS ultimo_estatus_servicio,
+						//     COALESCE(MAX(cts.descripcion), 'Sin reporte') AS ultimo_tipo_servicio
+						// FROM
+						//     clientes c
+						// LEFT JOIN
+						//     sucursales s ON c.id_sucursal = s.id_sucursal
+						// LEFT JOIN
+						//     estatus_cliente sc ON sc.id_status = (
+						//         SELECT
+						//             tsc.id_status
+						//         FROM
+						//             tipo_status_cliente tsc
+						//         WHERE
+						//             tsc.id_tipo_status = c.id_tipo_status
+						//     )
+						// LEFT JOIN
+						//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
+						// LEFT JOIN
+						//     tap ON tap.id_tap = c.id_tap
+						// LEFT JOIN
+						//     cat_calles cc ON cc.id_calle = c.id_calle
+						// LEFT JOIN
+						//     conf_internet ci ON ci.id_cliente = c.id_cliente
+						// LEFT JOIN (
+						//     SELECT
+						//         id_cliente,
+						//         MAX(fecha_reporte) AS max_fecha_reporte
+						//     FROM
+						//         reporte_servicios
+						//     GROUP BY
+						//         id_cliente
+						//     ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
+						// LEFT JOIN
+						//     reporte_servicios rs ON c.id_cliente = rs.id_cliente AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
+						// LEFT JOIN
+						//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
+						// LEFT JOIN
+						//     cat_tipo_servicios cts ON
+						//         CASE
+						//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     rel_tipo_ingreso_servicio
+						//                 WHERE
+						//                     id_tipo_ingreso IN (
+						//                         SELECT
+						//                             id_tipo_ingreso
+						//                         FROM
+						//                             montos
+						//                         WHERE
+						//                             id_ingreso = rs.id_ingreso
+						//                     )
+						//             )
+						//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     cliente_servicios
+						//                 WHERE
+						//                     id_reporte = rs.id_reporte
+						//                 LIMIT 1
+						//             )
+						//         END
+						// WHERE
+						//     1 = 1
+						//     $add_query
+						// GROUP BY
+						//     c.id_cliente,
+						//     nombre_completo,
+						//     c.telefono,
+						//     sucursal,
+						//     estatus_cliente,
+						//     tipo_status,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     tap_info,
+						//     calle,
+						//     c.numero,
+						//     c.referencia_casa,
+						//     winbox,
+						//     mac_winbox,
+						//     plan_datos,
+						//     ip_asignada_instalacion
+						// ORDER BY
+						//     c.id_sucursal ASC,
+						//     c.id_cliente ASC";
 
-//Tercer consulta para el PDF trayendo el ultimo reporte de servicio pero solo estado atendido
-// $query2 = "SELECT
-//     c.id_cliente,
-//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
-//     c.telefono,
-//     s.nombre AS sucursal,
-//     sc.descripcion AS estatus_cliente,
-//     tsc.descripcion AS tipo_status,
-//     c.tipo_contratacion,
-//     c.fecha_contrato,
-//     c.fecha_activacion,
-//     CONCAT(tap.id_tap, '-', tap.valor, '-', tap.salidas) AS tap_info,
-//     cc.nombre AS calle,
-//     c.numero,
-//     c.referencia_casa,
-//     COALESCE(
-//         (
-//             SELECT
-//                 t2.saldo_actual
-//             FROM
-//                 transacciones t2
-//             WHERE
-//                 t2.id_cliente = c.id_cliente
-//             ORDER BY
-//                 t2.id_transaccion DESC
-//             LIMIT 1
-//         ),
-//         0
-//     ) AS saldo_actual,
-//     COALESCE(ci.winbox, '---') AS winbox,
-//     COALESCE(ci.mac_winbox, '---') AS mac_winbox,
-//     COALESCE(ci.plan_datos, '---') AS plan_datos,
-//     COALESCE(ci.ip_asignada_instalacion, '---') AS ip_asignada_instalacion,
-//     rs.fecha_reporte AS ultimo_fecha_reporte,
-//     ess.descripcion AS ultimo_estatus_servicio,
-//     COALESCE(cts.descripcion, 'Sin reporte') AS ultimo_tipo_servicio
-// FROM
-//     clientes c
-// LEFT JOIN
-//     sucursales s ON c.id_sucursal = s.id_sucursal
-// LEFT JOIN
-//     estatus_cliente sc ON sc.id_status = (
-//         SELECT
-//             tsc.id_status
-//         FROM
-//             tipo_status_cliente tsc
-//         WHERE
-//             tsc.id_tipo_status = c.id_tipo_status
-//     )
-// LEFT JOIN
-//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
-// LEFT JOIN
-//     tap ON tap.id_tap = c.id_tap
-// LEFT JOIN
-//     cat_calles cc ON cc.id_calle = c.id_calle
-// LEFT JOIN
-//     conf_internet ci ON ci.id_cliente = c.id_cliente
-// LEFT JOIN (
-//     SELECT
-//         id_cliente,
-//         MAX(fecha_reporte) AS max_fecha_reporte
-//     FROM
-//         reporte_servicios
-//     WHERE
-//         id_estatus_servicio = 2
-//     GROUP BY
-//         id_cliente
-// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
-// LEFT JOIN
-//     reporte_servicios rs ON c.id_cliente = rs.id_cliente 
-//     AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
-// LEFT JOIN
-//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
-// LEFT JOIN
-//     cat_tipo_servicios cts ON
-//         CASE
-//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     rel_tipo_ingreso_servicio
-//                 WHERE
-//                     id_tipo_ingreso IN (
-//                         SELECT
-//                             id_tipo_ingreso
-//                         FROM
-//                             montos
-//                         WHERE
-//                             id_ingreso = rs.id_ingreso
-//                     )
-//             )
-//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
-//                 SELECT
-//                     id_tipo_servicio
-//                 FROM
-//                     cliente_servicios
-//                 WHERE
-//                     id_reporte = rs.id_reporte
-//                 LIMIT 1
-//             )
-//         END
-// WHERE
-//     1 = 1
-//     $add_query
-// ORDER BY
-//     c.id_sucursal ASC,
-//     c.id_cliente ASC";
+						//Tercer consulta para el PDF trayendo el ultimo reporte de servicio pero solo estado atendido
+						// $query2 = "SELECT
+						//     c.id_cliente,
+						//     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS nombre_completo,
+						//     c.telefono,
+						//     s.nombre AS sucursal,
+						//     sc.descripcion AS estatus_cliente,
+						//     tsc.descripcion AS tipo_status,
+						//     c.tipo_contratacion,
+						//     c.fecha_contrato,
+						//     c.fecha_activacion,
+						//     CONCAT(tap.id_tap, '-', tap.valor, '-', tap.salidas) AS tap_info,
+						//     cc.nombre AS calle,
+						//     c.numero,
+						//     c.referencia_casa,
+						//     COALESCE(
+						//         (
+						//             SELECT
+						//                 t2.saldo_actual
+						//             FROM
+						//                 transacciones t2
+						//             WHERE
+						//                 t2.id_cliente = c.id_cliente
+						//             ORDER BY
+						//                 t2.id_transaccion DESC
+						//             LIMIT 1
+						//         ),
+						//         0
+						//     ) AS saldo_actual,
+						//     COALESCE(ci.winbox, '---') AS winbox,
+						//     COALESCE(ci.mac_winbox, '---') AS mac_winbox,
+						//     COALESCE(ci.plan_datos, '---') AS plan_datos,
+						//     COALESCE(ci.ip_asignada_instalacion, '---') AS ip_asignada_instalacion,
+						//     rs.fecha_reporte AS ultimo_fecha_reporte,
+						//     ess.descripcion AS ultimo_estatus_servicio,
+						//     COALESCE(cts.descripcion, 'Sin reporte') AS ultimo_tipo_servicio
+						// FROM
+						//     clientes c
+						// LEFT JOIN
+						//     sucursales s ON c.id_sucursal = s.id_sucursal
+						// LEFT JOIN
+						//     estatus_cliente sc ON sc.id_status = (
+						//         SELECT
+						//             tsc.id_status
+						//         FROM
+						//             tipo_status_cliente tsc
+						//         WHERE
+						//             tsc.id_tipo_status = c.id_tipo_status
+						//     )
+						// LEFT JOIN
+						//     tipo_status_cliente tsc ON c.id_tipo_status = tsc.id_tipo_status
+						// LEFT JOIN
+						//     tap ON tap.id_tap = c.id_tap
+						// LEFT JOIN
+						//     cat_calles cc ON cc.id_calle = c.id_calle
+						// LEFT JOIN
+						//     conf_internet ci ON ci.id_cliente = c.id_cliente
+						// LEFT JOIN (
+						//     SELECT
+						//         id_cliente,
+						//         MAX(fecha_reporte) AS max_fecha_reporte
+						//     FROM
+						//         reporte_servicios
+						//     WHERE
+						//         id_estatus_servicio = 2
+						//     GROUP BY
+						//         id_cliente
+						// ) AS ultimo_reporte ON c.id_cliente = ultimo_reporte.id_cliente
+						// LEFT JOIN
+						//     reporte_servicios rs ON c.id_cliente = rs.id_cliente 
+						//     AND ultimo_reporte.max_fecha_reporte = rs.fecha_reporte
+						// LEFT JOIN
+						//     estatus_servicio ess ON rs.id_estatus_servicio = ess.id_estatus_servicio
+						// LEFT JOIN
+						//     cat_tipo_servicios cts ON
+						//         CASE
+						//             WHEN rs.id_peticion = 1 THEN cts.id_tipo_servicio IN (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     rel_tipo_ingreso_servicio
+						//                 WHERE
+						//                     id_tipo_ingreso IN (
+						//                         SELECT
+						//                             id_tipo_ingreso
+						//                         FROM
+						//                             montos
+						//                         WHERE
+						//                             id_ingreso = rs.id_ingreso
+						//                     )
+						//             )
+						//             ELSE cts.id_peticion = rs.id_peticion AND cts.id_tipo_servicio = (
+						//                 SELECT
+						//                     id_tipo_servicio
+						//                 FROM
+						//                     cliente_servicios
+						//                 WHERE
+						//                     id_reporte = rs.id_reporte
+						//                 LIMIT 1
+						//             )
+						//         END
+						// WHERE
+						//     1 = 1
+						//     $add_query
+						// ORDER BY
+						//     c.id_sucursal ASC,
+						//     c.id_cliente ASC";
 
 
-//Cuarta consulta para la table de clientes trayendo el ultimo reporte de servicios con estado atendido y el ultimo ingreso de inscripcion
-$query2 = "
+						//Cuarta consulta para la table de clientes trayendo el ultimo reporte de servicios con estado atendido y el ultimo ingreso de inscripcion
+						$query2 = "
 SELECT 
     c.id_cliente, 
     CONCAT(c.nombre, ' ', c.apellido_paterno, ' ', c.apellido_materno) AS Cliente,

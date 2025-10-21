@@ -227,7 +227,7 @@
 					<td align="center" width="50px"><input type="checkbox" name="selector" onclick="seleccionar()" /><input type='hidden'name='accion'/></td>
 				</tr>
 				<?php
-					$query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso ORDER BY p.activo DESC";
+					$query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso ORDER BY p.activo DESC, p.porcentaje asc";
 					$tabla = mysqli_query($conexion,$query);
 					while($registro=mysqli_fetch_array($tabla))
 					{

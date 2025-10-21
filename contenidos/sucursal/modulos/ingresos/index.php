@@ -127,7 +127,7 @@
 
 					$promociones_add[] = $_POST['promociones'][$i];
 					$conceptos_add[] = $_POST['conceptos_add'][$i];
-					$totales_add[]  = $_POST['monto_a'][$i] - (($_POST['monto_a'][$i] *  $promocion[0]) / 100);
+					$totales_add[]  = $_POST['monto_a'][$i] - $promocion[0];
 					$montos_add[] = $_POST['monto_a'][$i];
 				}
 
@@ -141,7 +141,7 @@
 				if ($promocion[0] == '')
 					$promocion[0] = 0;
 
-				$total_original = $_POST['monto'] - (($_POST['monto'] * $promocion[0]) / 100);
+				$total_original = $_POST['monto'] - $promocion[0];
 
 				$monto_total += $total_original;
 
@@ -168,7 +168,7 @@
 						$query_transaccion = "insert into transacciones (id_transaccion,id_cliente,id_concepto,cargo,saldo_anterior,saldo_actual,fecha_transaccion,hora_transaccion) select 0,'" . addslashes($_POST['id_cliente']) . "',2,'" . addslashes($_POST['monto']) . "',(select saldo_actual from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , (select saldo_actual-" . addslashes($_POST['monto']) . "  from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , '$fecha' as fecha, '$hora' as hora";
 						mysqli_query($conexion, $query_transaccion);
 					}
-					
+
 					//validar si el cliente tiene una configuracion de internet en proceso sin culminar
 					$queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
 					devolverValorQuery($queryeliminar);
@@ -287,10 +287,10 @@
 								$query_transaccion_add = "insert into transacciones (id_transaccion,id_cliente,id_concepto,cargo,saldo_anterior,saldo_actual,fecha_transaccion,hora_transaccion) select 0,'" . addslashes($_POST['id_cliente']) . "',2,'" . addslashes($montos_add[$i]) . "',(select saldo_actual from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , (select saldo_actual-" . addslashes($montos_add[$i]) . "  from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , '$fecha' as fecha, '$hora' as hora";
 								mysqli_query($conexion, $query_transaccion_add);
 							}
-							
+
 							//validar si el cliente tiene una configuracion de internet en proceso sin culminar
-					        // $queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-					        // devolverValorQuery($queryeliminar);
+							// $queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
+							// devolverValorQuery($queryeliminar);
 
 							//Servicio TV
 							if ($conceptos_add[$i] == '1') {
@@ -443,10 +443,17 @@
 
 						//actualizar la tarifa del cliente
 
-						// if ($_POST['tarifa_cliente'] != "" || $_POST['tarifa_cliente'] != null) {
-						// 	$update_tarifa = "UPDATE clientes SET tarifa = '" . addslashes($_POST['tarifa_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-						// 	mysqli_query($conexion, $update_tarifa);
-						// }
+						// 		if ($_POST['tarifa_cliente'] != "" || $_POST['tarifa_cliente'] != null) {
+						// 			$update_tarifa = "UPDATE clientes SET tarifa = '" . addslashes($_POST['tarifa_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
+						// 			mysqli_query($conexion, $update_tarifa);
+						// 		}
+
+						//actualizar la curp del cliente
+
+						if ($_POST['curp_cliente'] != "" || $_POST['curp_cliente'] != null) {
+							$update_tarifa = "UPDATE clientes SET rfc = '" . addslashes($_POST['curp_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
+							mysqli_query($conexion, $update_tarifa);
+						}
 	?>
 						<tr>
 							<td colspan="3" align="center">
@@ -559,7 +566,7 @@
 							<tr class="tabla_row">
 								<td><?php echo $registro[1]; ?></td>
 								<td><?php echo $registro[2]; ?></td>
-								<td><?php echo $registro[3] ." ". $registro[4] ." ". $registro[5] ." ". $registro[6]; ?></td>
+								<td><?php echo $registro[3] . " " . $registro[4] . " " . $registro[5] . " " . $registro[6]; ?></td>
 								<td><?php echo $registro[7]; ?></td>
 								<td align="right"><?php echo $registro[8]; ?></td>
 								<td width="10px">&nbsp;</td>

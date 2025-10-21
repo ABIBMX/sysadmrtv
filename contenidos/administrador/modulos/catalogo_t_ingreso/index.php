@@ -88,7 +88,8 @@
 			{
 				case 'editar':
 					
-					$query = "update cat_tipo_ingreso set descripcion='".addslashes(strtoupper($_POST['nombre']))."'  where id_tipo_ingreso='".addslashes($_POST['id'])."'";
+					// $query = "update cat_tipo_ingreso set descripcion='".addslashes(strtoupper($_POST['nombre']))."'  where id_tipo_ingreso='".addslashes($_POST['id'])."'";
+					$query = "update cat_tipo_ingreso set tipo_Servicio='".addslashes($_POST['servicio'])."', categoria='".addslashes($_POST['categoria'])."', descripcion='".addslashes(strtoupper($_POST['nombre']))."', es_servicio='".addslashes(strtoupper($_POST['es_servicio']))."', Tarifa_Inscripcion='".addslashes($_POST['tarifai'])."', Tarifa_Mensualidad='".addslashes($_POST['tarifam'])."',  estado='".addslashes($_POST['estado'])."' where id_tipo_ingreso='".addslashes($_POST['id'])."'";
 					
 					if(mysqli_query($conexion,$query))
 					{
@@ -127,7 +128,7 @@
 					
 				case 'agregar':
 				
-					$query = "insert into cat_tipo_ingreso (id_tipo_ingreso , descripcion) values (0,'".addslashes(strtoupper($_POST['nombre']))."')";
+					$query = "insert into cat_tipo_ingreso (id_tipo_ingreso,tipo_Servicio,categoria,descripcion,es_servicio,Tarifa_Inscripcion,Tarifa_Mensualidad,estado) values (0,'".addslashes($_POST['servicio'])."','".addslashes($_POST['categoria'])."','".addslashes(strtoupper($_POST['nombre']))."','".addslashes(strtoupper($_POST['es_servicio']))."','".addslashes($_POST['tarifai'])."','".addslashes($_POST['tarifam'])."','".addslashes($_POST['estado'])."')";
 					if(mysqli_query($conexion,$query))
 					{
 						?>
@@ -220,11 +221,16 @@
 			<table class="datagrid" width="100%" border="0" cellspacing="0">
 				<tr><td colspan="2" height="3px" class="separador"></td></tr>
 				<tr class="tabla_columns">
-                    <td>Tipo de Ingreso</td>
+					<td>Servicio</td>
+					<td>Categoría</td>
+					<td>Descripción del Ingreso</td>
+					<td>Precio Instalacion</td>
+					<td>Tarifa Mensualidad</td>
+					<td>Estado</td>
 					<td align="center" width="50px"><input type="checkbox" name="selector" onclick="seleccionar()" /><input type='hidden'name='accion'/></td>
 				</tr>
 				<?php
-					$query = "select * from cat_tipo_ingreso";
+					$query = "select * from cat_tipo_ingreso where estado = 'Activo' ORDER BY tipo_Servicio asc, categoria ASC";
 					$tabla = mysqli_query($conexion,$query);
 					while($registro=mysqli_fetch_array($tabla))
 					{
@@ -232,6 +238,11 @@
 						?>
 							<tr class="tabla_row">
 								<td><a href="index.php?menu=5&accion=editar&id=<?php echo $registro[0];  ?>"><?php echo $registro[1]; ?></a></td>
+								<td><?php echo $registro[2]; ?></a></td>
+								<td><?php echo $registro[3]; ?></a></td>
+								<td><?php echo $registro[5]; ?></a></td>
+								<td><?php echo $registro[6]; ?></a></td>
+								<td><?php echo $registro[8]; ?></a></td>
 								<td align="center"><input type="checkbox" name="<?php echo $registro[0];  ?>" /></td>
 							</tr>
 						<?php

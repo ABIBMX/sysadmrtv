@@ -207,6 +207,7 @@
 				$_POST['apellido_materno'] = addslashes(strtoupper($_POST['apellido_materno']));
 				$_POST['numero'] = addslashes(strtoupper($_POST['numero']));
 				// $_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
+				$_POST['rfc'] = addslashes(strtoupper($_POST['rfc']));
 				$_POST['num_contrato'] = addslashes(strtoupper($_POST['num_contrato']));
 				$_POST['fecha_contrato'] = addslashes(strtoupper($_POST['fecha_contrato']));
 				$_POST['referencia_casa'] = addslashes(strtoupper($_POST['referencia_casa']));
@@ -262,6 +263,7 @@
 				$_POST['apellido_paterno'] = addslashes(strtoupper($_POST['apellido_paterno']));
 				$_POST['apellido_materno'] = addslashes(strtoupper($_POST['apellido_materno']));
 				$_POST['numero'] = addslashes(strtoupper($_POST['numero']));
+				$_POST['rfc'] = addslashes(strtoupper($_POST['rfc']));
 				$_POST['tarifa'] = addslashes(strtoupper($_POST['tarifa']));
 				$_POST['num_contrato'] = addslashes(strtoupper($_POST['num_contrato']));
 				$_POST['fecha_contrato'] = addslashes(strtoupper($_POST['fecha_contrato']));

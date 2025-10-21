@@ -62,21 +62,21 @@
                         	<tr>
                             	<td>Tipo Ingreso</td>
                                 <td>
-                                	<select name="tipo_ingreso"  style="width:300px; font-size:12px;">
+                                	<select name="tipo_ingreso"  style="width:550px; font-size:12px;">
                                     	<option value="null">Elige un tipo de ingreso</option>
 										<?php
-											$query_t_u = "select * from cat_tipo_ingreso";
+											$query_t_u = "select * from cat_tipo_ingreso where estado = 'Activo' ORDER BY tipo_Servicio asc, categoria ASC";
 											$tabla_t_u = mysqli_query($conexion,$query_t_u);
 											while($registro_t_u = mysqli_fetch_array($tabla_t_u))
 											{
-												echo "<option value=\"$registro_t_u[0]\">$registro_t_u[1]</option>";
+												echo "<option value=\"$registro_t_u[0]\">$registro_t_u[2]-$registro_t_u[3]</option>";
 											}
                                         ?>
                                     </select>
                                 </td>
                             </tr>                      	
                             <tr><td>Nombre</td><td><input name="descripcion" style="width:300px;font-size:12px;" type="text" maxlength="255" /></td></tr> 
-                            <tr><td>Descuento </td><td>$ <input name="porcentaje" style="width:50px;font-size:12px;" onblur="solo_numeros(this)" onkeyup="solo_numeros(this)" type="text" maxlength="255" /></td></tr>
+                            <tr><td>Descuento</td><td>$ <input name="porcentaje" style="width:50px;font-size:12px;" onblur="solo_numeros(this)" onkeyup="solo_numeros(this)" type="text" maxlength="255" /></td></tr>
                             <tr>
                             	<td>
                                 	Estado

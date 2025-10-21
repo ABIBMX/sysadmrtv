@@ -289,8 +289,8 @@
 							}
 							
 							//validar si el cliente tiene una configuracion de internet en proceso sin culminar
-					        $queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-					        devolverValorQuery($queryeliminar);
+					        // $queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
+					        // devolverValorQuery($queryeliminar);
 
 							//Servicio TV
 							if ($conceptos_add[$i] == '1') {

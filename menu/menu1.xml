@@ -38,6 +38,7 @@
 		<item id="21" text="Equipos Inventario" img="new.gif"/>
 		<item id="file_sep_7" type="separator"/>
 		<item id="5" text="Tipo Ingresos" img="new.gif"/>
+		<item id="37" text="Tipo Servicios (Reporte de Servicios)" img="new.gif"/>
 		<item id="6" text="Tipo Egresos" img="new.gif"/>
 		<item id="file_sep_8" type="separator"/>
 		<item id="10" text="Clientes" img="new.gif"/>

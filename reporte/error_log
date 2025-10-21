@@ -1333,3 +1333,191 @@
 [19-Aug-2025 22:27:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio_pdf.php on line 53
 [19-Aug-2025 22:27:05 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
 [19-Aug-2025 22:27:05 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[21-Aug-2025 23:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[21-Aug-2025 23:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[21-Aug-2025 23:10:01 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[21-Aug-2025 23:10:01 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[25-Aug-2025 21:19:32 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[25-Aug-2025 21:19:32 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[25-Aug-2025 22:32:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[25-Aug-2025 22:32:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[25-Aug-2025 22:32:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[25-Aug-2025 22:32:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[25-Aug-2025 23:05:01 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[25-Aug-2025 23:05:01 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[26-Aug-2025 23:29:38 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:29:38 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:35:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:35:00 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:37:07 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:37:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:38:36 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:38:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:40:18 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:40:18 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:42:16 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:42:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:43:25 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:43:25 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:46:19 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:46:19 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[26-Aug-2025 23:51:43 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[26-Aug-2025 23:51:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[27-Aug-2025 06:01:39 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:01:39 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:04:05 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:04:05 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:18:15 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:18:15 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:23:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:23:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:26:20 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:26:20 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:27:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:27:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 06:28:15 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[27-Aug-2025 06:28:15 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[27-Aug-2025 06:28:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 06:28:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 17:09:38 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[27-Aug-2025 17:09:38 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[27-Aug-2025 17:54:36 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_pdf.php on line 49
+[27-Aug-2025 17:55:23 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_excel.php on line 36
+[27-Aug-2025 17:56:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 17:56:23 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 17:59:15 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 17:59:15 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 18:31:57 UTC] PHP Warning:  mysqli_query(): Empty query in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_excel.php on line 35
+[27-Aug-2025 18:31:57 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_excel.php on line 36
+[27-Aug-2025 18:32:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 18:32:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 18:32:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 18:32:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 18:39:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 18:39:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 18:39:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 18:39:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[27-Aug-2025 19:33:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[27-Aug-2025 19:33:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 01:30:18 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[28-Aug-2025 01:30:18 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[28-Aug-2025 01:32:03 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 01:32:03 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:40:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:44:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:44:16 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:44:30 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 18664649 bytes) in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 1240
+[28-Aug-2025 15:44:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:44:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:44:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:44:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:44:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:44:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[28-Aug-2025 15:44:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[28-Aug-2025 15:44:38 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[30-Aug-2025 01:55:21 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[30-Aug-2025 01:55:21 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[30-Aug-2025 01:55:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[30-Aug-2025 01:55:50 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[30-Aug-2025 21:26:31 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[30-Aug-2025 21:26:31 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[30-Aug-2025 21:26:31 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[30-Aug-2025 21:26:31 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[31-Aug-2025 01:45:16 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[31-Aug-2025 01:45:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[31-Aug-2025 17:25:46 UTC] PHP Warning:  mysqli_query(): Empty query in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/clientes_cobrar_excel.php on line 38
+[31-Aug-2025 17:25:46 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/clientes_cobrar_excel.php on line 39
+[01-Sep-2025 02:49:48 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 02:49:48 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 02:49:48 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 02:49:48 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 06:03:36 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 06:03:36 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 12:47:29 UTC] PHP Warning:  mysqli_query(): Empty query in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_pdf.php on line 25
+[01-Sep-2025 12:47:29 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_pdf.php on line 41
+[01-Sep-2025 12:47:29 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 12:47:29 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 14:03:37 UTC] PHP Warning:  mysqli_query(): Empty query in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_excel.php on line 35
+[01-Sep-2025 14:03:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/ingresos_excel.php on line 36
+[01-Sep-2025 17:03:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 17:03:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:03:11 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:03:11 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:03:11 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:03:11 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:04:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:04:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:04:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:04:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:06:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:06:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:06:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:06:59 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:09:06 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:19:40 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/clientes_excel.php on line 51
+[01-Sep-2025 19:22:53 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:22:53 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:22:53 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:22:53 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:42:28 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:42:28 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 19:42:28 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 19:42:28 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 20:02:07 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 20:02:07 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 20:02:07 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 20:02:07 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 20:02:41 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 20:02:41 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[01-Sep-2025 20:02:41 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[01-Sep-2025 20:02:41 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 03:05:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 03:05:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 03:05:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 03:05:37 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 16:22:26 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 16:22:26 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 16:22:29 UTC] PHP Warning:  mysqli_query(): Empty query in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio_pdf.php on line 25
+[02-Sep-2025 16:22:29 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio_pdf.php on line 53
+[02-Sep-2025 16:22:29 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 16:22:29 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 16:24:07 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[02-Sep-2025 16:24:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[02-Sep-2025 16:25:14 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[02-Sep-2025 16:25:14 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[02-Sep-2025 16:26:08 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[02-Sep-2025 16:26:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[02-Sep-2025 16:26:50 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 77
+[02-Sep-2025 16:26:50 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/reporte/reporte_servicio.php on line 82
+[02-Sep-2025 16:42:04 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 16:42:04 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:06:42 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:06:42 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:06:42 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:06:42 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:22:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:22:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:22:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:22:27 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:22:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:22:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:22:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:22:58 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:30:55 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:30:55 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[02-Sep-2025 18:30:55 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[02-Sep-2025 18:30:55 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[03-Sep-2025 12:03:02 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[03-Sep-2025 12:03:02 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
+[03-Sep-2025 12:03:02 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2856
+[03-Sep-2025 12:03:02 UTC] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home/tuvisio2/public_html/sysadmrtv.tuvisiontelecable.com.mx/pdf/class.pdf.php on line 2858
