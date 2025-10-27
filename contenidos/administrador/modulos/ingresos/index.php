@@ -130,6 +130,10 @@
 					}
 				}
 
+				echo "<pre>";
+				print_r($conceptos);
+				echo "</pre>";
+
 				//obtener todas las variables necesarias
 
 				$id_cliente = $_POST['id_cliente'];
@@ -187,9 +191,20 @@
 					//Insertamos el registro en caja
 					insertarCaja($sucursal[0], $monto_total, 1, 1, $concepto_caja[0], $id_cliente, $next_folio[0]);
 
-					//validar si el cliente tiene una configuracion de internet en proceso sin culminar
-					$queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='$id_cliente'";
-					devolverValorQuery($queryeliminar);
+					//Validamos si tiene alguna configuracion de internet en proceso
+					$queryProceso = "select * from conf_internet where estatus = 'PROCESO' AND  id_cliente='$id_cliente'";
+					$registroP = devolverValorQuery($queryProceso);
+
+					if ($registroP) {
+						//validar si el cliente tiene una configuracion de internet en proceso sin culminar
+						$queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='$id_cliente'";
+						mysqli_query($conexion, $queryeliminar);
+					}
+
+					echo "<pre>";
+					var_dump($conceptos);
+					echo "</pre>";
+					exit;
 
 					//Validar cada concepto
 					foreach ($conceptos as $index => $concepto) {
@@ -197,7 +212,7 @@
 						//Validando el tipo de servicio y la categoria
 						$tipoServicio = $concepto['tipoServicio'];
 						$categoria = $concepto['categoria'];
-						$concepto = $concepto['concepto'];
+						$nombreConcepto  = $concepto['concepto'];
 						$total_original = $concepto['subtotal'];
 						$promocionConcepto = $concepto['promocion'];
 
@@ -207,21 +222,21 @@
 								switch ($categoria) {
 
 									case 'INSCRIPCIONES':
-										if ($concepto == '22') {
+										if ($nombreConcepto == '22') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'CONTRATACION DE ADICIONALES':
-										if ($concepto == '35') {
+										if ($nombreConcepto == '35') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'SUSPENSIONES':
-										if ($concepto == '56') {
+										if ($nombreConcepto == '56') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -238,7 +253,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -252,7 +267,7 @@
 										break;
 
 									case 'RECONEXIONES':
-										if ($concepto == '36') {
+										if ($nombreConcepto == '36') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -269,7 +284,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -283,7 +298,7 @@
 										break;
 
 									case 'CANCELACIONES':
-										if ($concepto == '31') {
+										if ($nombreConcepto == '31') {
 											$query_transaccion = "UPDATE clientes SET configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -300,7 +315,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -314,14 +329,14 @@
 										break;
 
 									case 'CAMBIO DE DOMICILIO':
-										if ($concepto == '39') {
+										if ($nombreConcepto == '39') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'PAGO DE MENSUALIDADES':
-										if ($concepto == '40') {
+										if ($nombreConcepto == '40') {
 											// Actualizar cliente
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV COBRE', configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -336,21 +351,21 @@
 								switch ($categoria) {
 
 									case 'INSCRIPCIONES':
-										if ($concepto == '43') {
+										if ($nombreConcepto == '43') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'CONTRATACION DE ADICIONALES':
-										if ($concepto == '46') {
+										if ($nombreConcepto == '46') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'SUSPENSIONES':
-										if ($concepto == '57') {
+										if ($nombreConcepto == '57') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -367,7 +382,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumano el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -381,7 +396,7 @@
 										break;
 
 									case 'RECONEXIONES':
-										if ($concepto == '49') {
+										if ($nombreConcepto == '49') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -398,7 +413,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -412,7 +427,7 @@
 										break;
 
 									case 'CANCELACIONES':
-										if ($concepto == '32') {
+										if ($nombreConcepto == '32') {
 											$query_transaccion = "UPDATE clientes SET  configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
@@ -429,7 +444,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -443,14 +458,14 @@
 										break;
 
 									case 'CAMBIO DE DOMICILIO':
-										if ($concepto == '53') {
+										if ($nombreConcepto == '53') {
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 										break;
 
 									case 'PAGO DE MENSUALIDADES':
-										if ($concepto == '51') {
+										if ($nombreConcepto == '51') {
 											// Actualizar cliente
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA', configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -460,19 +475,19 @@
 										}
 										break;
 									case 'CAMBIO DE SERVICIO':
-										if ($concepto == '28') {
+										if ($nombreConcepto == '28') {
 											//CLIENTE CON INTERNET (QUITA INTERNET Y AGREGA TV)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 
-										if ($concepto == '30') {
+										if ($nombreConcepto == '30') {
 											//CLIENTE CON TV E INTERNET (QUITA INTERNET Y DEJA SOLO TV)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 										}
 
-										if ($concepto == '48') {
+										if ($nombreConcepto == '48') {
 											//CLIENTE CON TV X COBRE CAMBIA A TV X FIBRA
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV FIBRA' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -485,7 +500,7 @@
 								switch ($categoria) {
 
 									case 'INSCRIPCIONES':
-										if ($concepto == '24') {
+										if ($nombreConcepto == '24') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -511,7 +526,7 @@
 										break;
 
 									case 'CONTRATACION DE ADICIONALES':
-										if ($concepto == '24') {
+										if ($nombreConcepto == '24') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -554,7 +569,7 @@
 										break;
 
 									case 'SUSPENSIONES':
-										if ($concepto == '58') {
+										if ($nombreConcepto == '58') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -572,7 +587,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -604,7 +619,7 @@
 										break;
 
 									case 'RECONEXIONES':
-										if ($concepto == '37') {
+										if ($nombreConcepto == '37') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -622,7 +637,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -653,9 +668,8 @@
 										break;
 
 									case 'CANCELACIONES':
-										if ($concepto == '33') {
-
-											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
+										if ($nombreConcepto == '33') {
+											$query_transaccion = "UPDATE clientes SET configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
 											//Si fue un pago parcial, registramos el saldo restante en transacciones
@@ -671,7 +685,7 @@
 													$saldo_anterior = $ultima_transaccion[5];
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
 												} else {
-													//Si es un pago, restamos el saldo restante al saldo actual
+													//Si es un pago, sumamos el saldo restante al saldo actual
 													$saldo_anterior = $ultima_transaccion[5];
 													//esto es para que si hay un saldo le sume el saldo restante y si no le sume 0
 													$saldo_actual = $ultima_transaccion[5] + $saldo_restante;
@@ -682,28 +696,28 @@
 												mysqli_query($conexion, $queryTransacciones);
 											}
 
-											//Actualizacion de la configuracion de internet
-											$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='$id_cliente'";
-											$registroCI = devolverValorQuery($queryCI);
+											//Actualizacion de la configuracion de internet (Esto en el reporte de servicio)
+											// $queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='$id_cliente'";
+											// $registroCI = devolverValorQuery($queryCI);
 
-											if ($registroCI) {
-												$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
-												devolverValorQuery($queryOld);
-											} else {
-												//si no tiene registro actual, preguntamos si tiene uno en proceso.
-												$queryCIProceso = "select * from conf_internet where estatus = 'PROCESO' AND  id_cliente='$id_cliente'";
-												$registroCIProceso = devolverValorQuery($queryCIProceso);
+											// if ($registroCI) {
+											// 	$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
+											// 	devolverValorQuery($queryOld);
+											// } else {
+											// 	//si no tiene registro actual, preguntamos si tiene uno en proceso.
+											// 	$queryCIProceso = "select * from conf_internet where estatus = 'PROCESO' AND  id_cliente='$id_cliente'";
+											// 	$registroCIProceso = devolverValorQuery($queryCIProceso);
 
-												if ($registroCIProceso) {
-													$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
-													devolverValorQuery($queryOld);
-												}
-											}
+											// 	if ($registroCIProceso) {
+											// 		$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
+											// 		devolverValorQuery($queryOld);
+											// 	}
+											// }
 										}
 										break;
 
 									case 'CAMBIO DE DOMICILIO':
-										if ($concepto == '54') {
+										if ($nombreConcepto == '54') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -728,7 +742,7 @@
 										break;
 
 									case 'PAGO DE MENSUALIDADES':
-										if ($concepto == '45') {
+										if ($nombreConcepto == '45') {
 											// Actualizar cliente
 											$query_transaccion = "UPDATE clientes SET  tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -738,7 +752,7 @@
 										}
 										break;
 									case 'CAMBIO DE SERVICIO':
-										if ($concepto == '25') {
+										if ($nombreConcepto == '25') {
 											//CLIENTE CON TV (AGREGA INTERNET)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -761,7 +775,7 @@
 											devolverValorQuery($query);
 										}
 
-										if ($concepto == '26') {
+										if ($nombreConcepto == '26') {
 											//CLIENTE CON INTERNET (AGREGA TV)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV CON INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -791,7 +805,7 @@
 								switch ($categoria) {
 
 									case 'INSCRIPCIONES':
-										if ($concepto == '23') {
+										if ($nombreConcepto == '23') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -816,7 +830,7 @@
 										break;
 
 									case 'SUSPENSIONES':
-										if ($concepto == '59') {
+										if ($nombreConcepto == '59') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -866,7 +880,7 @@
 										break;
 
 									case 'RECONEXIONES':
-										if ($concepto == '38') {
+										if ($nombreConcepto == '38') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -915,9 +929,9 @@
 										break;
 
 									case 'CANCELACIONES':
-										if ($concepto == '34') {
+										if ($nombreConcepto == '34') {
 
-											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
+											$query_transaccion = "UPDATE clientes SET configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
 
 											//Si fue un pago parcial, registramos el saldo restante en transacciones
@@ -944,28 +958,28 @@
 												mysqli_query($conexion, $queryTransacciones);
 											}
 
-											//Actualizacion de la configuracion de internet
-											$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='$id_cliente'";
-											$registroCI = devolverValorQuery($queryCI);
+											//Actualizacion de la configuracion de internet (Esto en el reporte de servicio)
+											// $queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='$id_cliente'";
+											// $registroCI = devolverValorQuery($queryCI);
 
-											if ($registroCI) {
-												$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
-												devolverValorQuery($queryOld);
-											} else {
-												//si no tiene registro actual, preguntamos si tiene uno en proceso.
-												$queryCIProceso = "select * from conf_internet where estatus = 'PROCESO' AND  id_cliente='$id_cliente'";
-												$registroCIProceso = devolverValorQuery($queryCIProceso);
+											// if ($registroCI) {
+											// 	$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
+											// 	devolverValorQuery($queryOld);
+											// } else {
+											// 	//si no tiene registro actual, preguntamos si tiene uno en proceso.
+											// 	$queryCIProceso = "select * from conf_internet where estatus = 'PROCESO' AND  id_cliente='$id_cliente'";
+											// 	$registroCIProceso = devolverValorQuery($queryCIProceso);
 
-												if ($registroCIProceso) {
-													$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
-													devolverValorQuery($queryOld);
-												}
-											}
+											// 	if ($registroCIProceso) {
+											// 		$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='$id_cliente' AND id = '" . $registroCI['id'] . "'";
+											// 		devolverValorQuery($queryOld);
+											// 	}
+											// }
 										}
 										break;
 
 									case 'CAMBIO DE DOMICILIO':
-										if ($concepto == '55') {
+										if ($nombreConcepto == '55') {
 
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -990,7 +1004,7 @@
 										break;
 
 									case 'PAGO DE MENSUALIDADES':
-										if ($concepto == '44') {
+										if ($nombreConcepto == '44') {
 											// Actualizar cliente
 											$query_transaccion = "UPDATE clientes SET  tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -1000,7 +1014,7 @@
 										}
 										break;
 									case 'CAMBIO DE SERVICIO':
-										if ($concepto == '27') {
+										if ($nombreConcepto == '27') {
 											//CLIENTE CON TV (QUITA TV Y AGREGA INTERNET)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -1023,7 +1037,7 @@
 											devolverValorQuery($query);
 										}
 
-										if ($concepto == '29') {
+										if ($nombreConcepto == '29') {
 											//CLIENTE DE TV CON INTERNET (QUITA TV Y DEJA SOLO INTERNET)
 											$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO INTERNET' , configuracion_internet = 'SI' WHERE id_cliente = '$id_cliente'";
 											mysqli_query($conexion, $query_transaccion);
@@ -1052,10 +1066,10 @@
 
 						if ($index === 0) {
 							//Insertamos el monto principal
-							$query_montos = " insert into montos (id_monto,id_ingreso,id_tipo_ingreso,monto,es_adicional) values (0,'" . $id_ingreso . "','$concepto','$total_original',0)";
+							$query_montos = " insert into montos (id_monto,id_ingreso,id_tipo_ingreso,monto,es_adicional) values (0,'" . $id_ingreso . "','$nombreConcepto','$total_original',0)";
 						} else {
 							//Insertamos los montos adicionales
-							$query_montos = " insert into montos (id_monto,id_ingreso,id_tipo_ingreso,monto,es_adicional) values (0,'" . $id_ingreso . "','$concepto','$total_original',1)";
+							$query_montos = " insert into montos (id_monto,id_ingreso,id_tipo_ingreso,monto,es_adicional) values (0,'" . $id_ingreso . "','$nombreConcepto','$total_original',1)";
 						}
 
 						mysqli_query($conexion, $query_montos);
@@ -1093,7 +1107,7 @@
 					}
 
 					//Alerta de exito con redireccionamiento a reporte de servicio
-					?>
+	?>
 					<tr>
 						<td colspan="3" align="center">
 							<table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -1129,446 +1143,8 @@
 							</table>
 						</td>
 					</tr>
-					<?php
+	<?php
 				}
-
-				break;
-
-
-
-
-
-
-
-
-				$total = count($_POST['conceptos_add']);
-				$totales_add = array();
-				$conceptos_add = array();
-				$promociones_add = array();
-				$montos_add = array();
-				$monto_total = 0;
-
-				//Este proceso es para montos adicionales
-				for ($i = 0; $i < $total; $i++) {
-					$query_promocion =  "select porcentaje from promociones where id_promocion=" . addslashes($_POST['promociones'][$i]);
-					$promocion = devolverValorQuery($query_promocion);
-
-					if ($promocion[0] == '')
-						$promocion[0] = 0;
-
-					$promociones_add[] = $_POST['promociones'][$i];
-					$conceptos_add[] = $_POST['conceptos_add'][$i];
-					$totales_add[]  = $_POST['monto_a'][$i] - $promocion[0];
-					$montos_add[] = $_POST['monto_a'][$i];
-				}
-
-				for ($j = 0; $j < $total; $j++) {
-					$monto_total += $totales_add[$j];
-				}
-
-				//Este proceso es para el monto del concepto original
-				$query_promocion =  "select porcentaje from promociones where id_promocion=" . addslashes($_POST['promocion']);
-				$promocion = devolverValorQuery($query_promocion);
-				if ($promocion[0] == '')
-					$promocion[0] = 0;
-
-				$total_original = $_POST['monto'] - $promocion[0];
-
-				$monto_total += $total_original;
-
-				$query_next_folio = "select MAX(i.folio_nota)+ 1 AS SIGUIENTE from ingresos i, clientes c, sucursales s where i.id_cliente = c.id_cliente and c.id_sucursal=s.id_sucursal and s.id_sucursal=(select id_sucursal from clientes where id_cliente='" . addslashes($_POST['id_cliente']) . "')";
-
-				$next_folio = devolverValorQuery($query_next_folio);
-
-				$query_next_folio_nuevo = "select MAX(i.folio_nuevo)+ 1 AS SIGUIENTENUEVO,s.id_sucursal from ingresos i, clientes c, sucursales s where i.id_cliente = c.id_cliente and c.id_sucursal=s.id_sucursal and s.id_sucursal=(select id_sucursal from clientes where id_cliente='" . addslashes($_POST['id_cliente']) . "')";
-
-				$next_folio_nuevo = devolverValorQuery($query_next_folio_nuevo);
-
-				if ($next_folio[0] == '') {
-					$next_folio[0] = '1';
-				}
-
-				if ($next_folio_nuevo[0] == '') {
-					$next_folio_nuevo[0] = '1';
-				}
-
-				if ($_POST['nota_impresa'] == "") {
-					$_POST['nota_impresa'] = "NULL";
-				}
-
-				$query = "insert into ingresos (id_ingreso,id_cliente,monto_total,fecha,observaciones, folio_nota,nota_impresa,folio_nuevo,recibo_fiscal) values (0,'" . addslashes($_POST['id_cliente']) . "','" . $monto_total . "','" . date('Y-m-d') . "','" . addslashes($_POST['observaciones']) . "','" . $next_folio[0] . "'," . addslashes($_POST['nota_impresa']) . "," . $next_folio_nuevo[0] . ",'" . $next_folio_nuevo[1] . "-" . $next_folio_nuevo[0] . "')";
-
-
-				if (mysqli_query($conexion, $query)) {
-					$id_ingreso = mysqli_insert_id($conexion);
-					$concepto_caja = devolverValorQuery("select descripcion from cat_tipo_ingreso where id_tipo_ingreso='" . addslashes($_POST['concepto']) . "'");
-					$sucursal = devolverValorQuery("select id_sucursal from clientes where id_cliente='" . addslashes($_POST['id_cliente']) . "'");
-					insertarCaja($sucursal[0], $monto_total, 1, 1, $concepto_caja[0], $_POST['id_cliente'], $next_folio[0]);
-
-					if ($_POST['concepto'] == '5') {
-						$query_transaccion = "insert into transacciones (id_transaccion,id_cliente,id_concepto,cargo,saldo_anterior,saldo_actual,fecha_transaccion,hora_transaccion) select 0,'" . addslashes($_POST['id_cliente']) . "',2,'" . addslashes($_POST['monto']) . "',(select saldo_actual from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , (select saldo_actual-" . addslashes($_POST['monto']) . "  from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , '$fecha' as fecha, '$hora' as hora";
-						mysqli_query($conexion, $query_transaccion);
-					}
-
-					//validar si el cliente tiene una configuracion de internet en proceso sin culminar
-					$queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-					devolverValorQuery($queryeliminar);
-
-					//Servicio TV
-					if ($_POST['concepto'] == '1') {
-
-						$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-						mysqli_query($conexion, $query_transaccion);
-					}
-
-					//Servicio TV + Internet
-
-					if ($_POST['concepto'] == '9' || $_POST['concepto'] == '15') {
-
-						//actualizacion de los datos de internet 
-
-						$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-						$registroCI = devolverValorQuery($queryCI);
-
-						if ($registroCI) {
-
-							// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-							$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-							devolverValorQuery($queryOld);
-						}
-
-						date_default_timezone_set('America/Mexico_City');
-						$fecha = date('Y-m-d');
-						$hora = date('H:i:s');
-
-						$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-						values 
-						(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-						devolverValorQuery($query);
-
-						//actualizacion de clientes 
-						$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV + INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-						mysqli_query($conexion, $query_transaccion);
-					}
-
-					//Instalacion solo internet
-
-					if ($_POST['concepto'] == '8' || $_POST['concepto'] == '13' || $_POST['concepto'] == '14') {
-
-						//actualizacion de los datos de internet 
-
-						$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-						$registroCI = devolverValorQuery($queryCI);
-
-						if ($registroCI) {
-
-							// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-							$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-							devolverValorQuery($queryOld);
-						}
-
-						date_default_timezone_set('America/Mexico_City');
-						$fecha = date('Y-m-d');
-						$hora = date('H:i:s');
-
-						$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-						values 
-						(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-						devolverValorQuery($query);
-
-						$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'INSTALACION SOLO INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-						mysqli_query($conexion, $query_transaccion);
-					}
-
-					//cambio de TV + Internet por Internet
-
-					if ($_POST['concepto'] == '16') {
-
-						//actualizacion de los datos de internet 
-
-						$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-						$registroCI = devolverValorQuery($queryCI);
-
-						if ($registroCI) {
-
-							// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-							$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-							devolverValorQuery($queryOld);
-						}
-
-						date_default_timezone_set('America/Mexico_City');
-						$fecha = date('Y-m-d');
-						$hora = date('H:i:s');
-
-						$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-						values 
-						(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-						devolverValorQuery($query);
-
-						$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'CAMBIO DE TV + INTERNET POR INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-						mysqli_query($conexion, $query_transaccion);
-					}
-
-					//cancelado
-
-					// if ($_POST['concepto'] == '9') {
-
-					// 	$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO CANCELADO' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-					// 	mysqli_query($conexion, $query_transaccion);
-
-					// 	print_r('cancelado');
-					// }
-
-
-					$query_montos = " insert into montos (id_monto,id_ingreso,id_tipo_ingreso,monto,es_adicional) values (0,'" . $id_ingreso . "','" . addslashes($_POST['concepto']) . "','" . addslashes($total_original) . "',0)";
-
-					if ($total > 0) {
-						for ($i = 0; $i < $total; $i++) {
-							$query_montos .= ",(0,'" . $id_ingreso . "','" . addslashes($conceptos_add[$i]) . "','" . addslashes($totales_add[$i]) . "',1)";
-
-							if ($conceptos_add[$i] == '5') {
-								$query_transaccion_add = "insert into transacciones (id_transaccion,id_cliente,id_concepto,cargo,saldo_anterior,saldo_actual,fecha_transaccion,hora_transaccion) select 0,'" . addslashes($_POST['id_cliente']) . "',2,'" . addslashes($montos_add[$i]) . "',(select saldo_actual from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , (select saldo_actual-" . addslashes($montos_add[$i]) . "  from transacciones where id_cliente='" . addslashes($_POST['id_cliente']) . "' order by fecha_transaccion desc, id_transaccion desc limit 1) , '$fecha' as fecha, '$hora' as hora";
-								mysqli_query($conexion, $query_transaccion_add);
-							}
-
-							//validar si el cliente tiene una configuracion de internet en proceso sin culminar
-							// $queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-							// devolverValorQuery($queryeliminar);
-
-							//Servicio TV
-							if ($conceptos_add[$i] == '1') {
-
-								$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-								mysqli_query($conexion, $query_transaccion);
-							}
-
-							//Servicio TV + Internet
-
-							if ($conceptos_add[$i] == '9' || $conceptos_add[$i] == '15') {
-
-								//actualizacion de los datos de internet 
-
-								$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-								$registroCI = devolverValorQuery($queryCI);
-
-								if ($registroCI) {
-
-									// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-									$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-									devolverValorQuery($queryOld);
-								}
-
-								date_default_timezone_set('America/Mexico_City');
-								$fecha = date('Y-m-d');
-								$hora = date('H:i:s');
-
-								$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-								values 
-								(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-								devolverValorQuery($query);
-
-								$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO TV + INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-								mysqli_query($conexion, $query_transaccion);
-							}
-
-							//Instalacion solo internet
-
-							if ($conceptos_add[$i] == '8' || $conceptos_add[$i] == '13' || $conceptos_add[$i] == '14') {
-
-								//actualizacion de los datos de internet 
-
-								$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-								$registroCI = devolverValorQuery($queryCI);
-
-								if ($registroCI) {
-
-									// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-									$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR', pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-									devolverValorQuery($queryOld);
-								}
-
-								date_default_timezone_set('America/Mexico_City');
-								$fecha = date('Y-m-d');
-								$hora = date('H:i:s');
-
-								$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-								values 
-								(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-								devolverValorQuery($query);
-
-								$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'INSTALACION SOLO INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-								mysqli_query($conexion, $query_transaccion);
-							}
-
-							//cambio de TV + Internet por Internet
-
-							if ($conceptos_add[$i] == '16') {
-
-								//actualizacion de los datos de internet 
-
-								$queryCI = "select * from conf_internet where estatus = 'ACTUAL' AND pasos = 'Finalizado' AND  id_cliente='" . addslashes($_POST['id_cliente']) . "'";
-
-								$registroCI = devolverValorQuery($queryCI);
-
-								if ($registroCI) {
-
-									// $query = "update conf_internet set no_olt='".addslashes($_POST['no_olt'])."', no_caja='".addslashes($_POST['no_caja'])."', no_pon='".addslashes($_POST['no_pon'])."', marca_onu='".addslashes($_POST['marca_onu'])."', serie='".addslashes($_POST['serie'])."', mac_address='".addslashes($_POST['mac_address'])."', encapsulamiento='".addslashes($_POST['encapsulamiento'])."', registro_winbox='".addslashes($_POST['registro_winbox'])."', mac_winbox='".addslashes($_POST['mac_winbox'])."', plan_datos='".addslashes($_POST['plan_datos'])."', ip_instalacion='".addslashes($_POST['ip_instaalcion'])."' where id_cliente='".addslashes($_POST['cliente'])."'";
-
-									$queryOld = "UPDATE conf_internet SET estatus = 'ANTERIOR' , pasos = 'Finalizado' WHERE id_cliente='" . addslashes($_POST['id_cliente']) . "' AND id = '" . $registroCI['id'] . "'";
-									devolverValorQuery($queryOld);
-								}
-
-								date_default_timezone_set('America/Mexico_City');
-								$fecha = date('Y-m-d');
-								$hora = date('H:i:s');
-
-								$query = "INSERT INTO conf_internet (id,id_cliente,no_olt,no_caja,no_pon,fecha_registro,hora_registro,estatus,pasos)
-								values 
-								(0,'" . addslashes($_POST['id_cliente']) . "','" . addslashes($_POST['no_olt']) . "','" . addslashes($_POST['no_caja']) . "','" . addslashes($_POST['no_pon']) . "','" . $fecha . "','" . $hora . "','PROCESO','Alta_ingreso')";
-
-								devolverValorQuery($query);
-
-								$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'CAMBIO DE TV + INTERNET POR INTERNET' , configuracion_internet = 'EN PROCESO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-								mysqli_query($conexion, $query_transaccion);
-							}
-
-							//cancelado
-
-							// if ($conceptos_add[$i] == '9') {
-
-							// 	$query_transaccion = "UPDATE clientes SET tipo_contratacion = 'SERVICIO CANCELADO' , configuracion_internet = 'NO NECESARIO' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-							// 	mysqli_query($conexion, $query_transaccion);
-							// }
-						}
-					}
-					if (mysqli_query($conexion, $query_montos)) {
-						$lista_montos = "select id_monto, es_adicional from montos where id_ingreso='" . $id_ingreso . "'";
-						$tabla_montos = mysqli_query($conexion, $lista_montos);
-						$insert_monto_promocion = "insert into monto_promocion (id_monto,id_promocion) values ";
-						$add_query_promo = "";
-						$bandera_promo = false;
-						$n = 0;
-						$j = 0;
-						while ($registro_montos = mysqli_fetch_array($tabla_montos)) {
-							$bandera_promo = true;
-
-
-
-							if ($registro_montos[1] == '1') {
-								if ($promociones_add[$j] != "null") {
-
-									if ($n > 0)
-										$add_query_promo .= ",";
-
-
-									$add_query_promo .= "(" . $registro_montos[0] . "," . addslashes($promociones_add[$j]) . ")";
-								}
-
-								$j++;
-							} else {
-								if ($_POST['promocion'] != "null") {
-									if ($n > 0)
-										$add_query_promo .= ",";
-									$add_query_promo .= "(" . $registro_montos[0] . "," . addslashes($_POST['promocion']) . ")";
-								}
-							}
-							$n++;
-						}
-						$insert_monto_promocion = $insert_monto_promocion . $add_query_promo;
-						if ($bandera_promo) {
-							mysqli_query($conexion, $insert_monto_promocion);
-						}
-						$bandera_imprimir_folio = true;
-
-						//actualizar el numero de telefono del cliente
-
-						if ($_POST['telefono_cliente'] != "" || $_POST['telefono_cliente'] != null) {
-							$update_celular = "UPDATE clientes SET telefono = '" . addslashes($_POST['telefono_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-							mysqli_query($conexion, $update_celular);
-						}
-
-						//actualizar la tarifa del cliente
-
-						if ($_POST['tarifa_cliente'] != "" || $_POST['tarifa_cliente'] != null) {
-							$update_tarifa = "UPDATE clientes SET tarifa = '" . addslashes($_POST['tarifa_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-							mysqli_query($conexion, $update_tarifa);
-						}
-
-						//actualizar la curp del cliente
-						if ($_POST['curp_cliente'] != "" || $_POST['curp_cliente'] != null) {
-							$update_tarifa = "UPDATE clientes SET rfc = '" . addslashes($_POST['curp_cliente']) . "' WHERE id_cliente = '" . addslashes($_POST['id_cliente']) . "'";
-							mysqli_query($conexion, $update_tarifa);
-						}
-
-
-					?>
-
-						<tr>
-							<td colspan="3" align="center">
-								<table border="0" width="100%" cellpadding="0" cellspacing="0">
-									<tr>
-										<td width="5px" background="imagenes/message_left.png"></td>
-										<td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los datos fueron agregados correctamente</td>
-										<td width="5px" background="imagenes/message_right.png"></td>
-									</tr>
-								</table>
-
-							</td>
-						</tr>
-
-						<!-- Redirigir usando JavaScript después de mostrar el mensaje -->
-						<script>
-							setTimeout(function() {
-								window.location.href = "https://sysadmrtv.tuvisiontelecable.com.mx/index.php?menu=18&accion=agregar";
-							}, 3000); // Redirige después de 3 segundos
-						</script>
-					<?php
-					} else {
-					?>
-						<tr>
-							<td colspan="3" align="center">
-								<table border="0" width="100%" cellpadding="0" cellspacing="0">
-									<tr>
-										<td width="5px" background="imagenes/message_left.png"></td>
-										<td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Algunos datos fueron agregados, correctamente otros no</td>
-										<td width="5px" background="imagenes/message_right.png"></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					<?php
-					}
-				} else {
-					?>
-					<tr>
-						<td colspan="3" align="center">
-							<table border="0" width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td width="5px" background="imagenes/message_error_left.png"></td>
-									<td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al agregar los datos.</td>
-									<td width="5px" background="imagenes/message_error_right.png"></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<?php
-				}
-
 				break;
 		}
 	}

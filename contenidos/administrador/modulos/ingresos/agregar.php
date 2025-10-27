@@ -131,12 +131,12 @@
 		});
 
 		let chkPagoParcial = document.getElementById('pago_parcial');
-		if (chkPagoParcial) {
+		if (chkPagoParcial.checked == true) {
 			debugInfo += "\n\nPago parcial activo: " + chkPagoParcial.checked;
 			debugInfo += "\nMonto parcial: " + document.formulario.pago_final.value;
 		}
 
-		debugInfo += "\n\nTotal general (total2): " + document.formulario.total2.value;
+		debugInfo += "\n\nTotal general (total2): " + document.getElementById("total2").value;
 		debugInfo += "\nBandera total: " + (typeof bandera_total !== "undefined" ? bandera_total : "no definida");
 
 		alert(debugInfo);
@@ -759,7 +759,7 @@
 		// Actualizamos el div de la fila (si lo tienes)
 		let divSubtotal = document.getElementById("div_subtotal_" + idFila);
 		if (divSubtotal) {
-			divSubtotal.innerHTML = "<strong>Subtotal: </strong> <input type='text' id='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + nuevoPrecio.toFixed(2) + "' />";
+			divSubtotal.innerHTML = "<strong>Subtotal: </strong> <input type='text' name='subtotal_" + idFila + "' id='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + nuevoPrecio.toFixed(2) + "' />";
 		}
 
 		// Finalmente, actualizamos el total general sumando todos los subtotales
