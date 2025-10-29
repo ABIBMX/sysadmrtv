@@ -1,261 +1,246 @@
 <script language="javascript" type="text/javascript">
-	function seleccionar()
-	{
-		if(document.datagrid.selector.checked)
-		{
-			for(var i = 1; i<document.datagrid.elements.length; i++)
-			{
+	function seleccionar() {
+		if (document.datagrid.selector.checked) {
+			for (var i = 1; i < document.datagrid.elements.length; i++) {
 				document.datagrid.elements[i].checked = true;
-			
+
 			}
-		}
-		else
-		{
-			for(var i = 1; i<document.datagrid.elements.length; i++)
-			{
+		} else {
+			for (var i = 1; i < document.datagrid.elements.length; i++) {
 				document.datagrid.elements[i].checked = false;
-			
+
 			}
 		}
 	}
-	function editar()
-	{
-		var contador=0;
-		for(var j = 1; j<document.datagrid.elements.length; j++)
-		{
-			if(document.datagrid.elements[j].checked)
-			{
+
+	function editar() {
+		var contador = 0;
+		for (var j = 1; j < document.datagrid.elements.length; j++) {
+			if (document.datagrid.elements[j].checked) {
 				contador++;
 			}
 		}
-		if(contador==1)
-		{
+		if (contador == 1) {
 			document.datagrid.action = "index.php?menu=26&accion=editar"
 			document.datagrid.submit();
-		}
-		else
-		{
-			if(contador==0)
+		} else {
+			if (contador == 0)
 				window.alert("No ha seleccionado nada.");
 			else
 				window.alert("Solo puede seleccionar 1 registro");
 		}
 	}
-	function eliminar()
-	{
+
+	function eliminar() {
 		document.datagrid.accion.value = "eliminar";
-		var checado="no";
-		for(var j = 1; j<document.datagrid.elements.length; j++)
-		{
-			if(document.datagrid.elements[j].checked)
-			{
+		var checado = "no";
+		for (var j = 1; j < document.datagrid.elements.length; j++) {
+			if (document.datagrid.elements[j].checked) {
 				checado = "si";
 			}
 		}
-		if(checado=="si")
-		{
-			if(window.confirm("Est\u00e1s seguro de ELIMINAR los registros seleccionados?"))
+		if (checado == "si") {
+			if (window.confirm("Est\u00e1s seguro de ELIMINAR los registros seleccionados?"))
 				document.datagrid.submit();
-		}
-		else
-		{
+		} else {
 			window.alert("No ha seleccionado ningun registro");
 		}
 	}
 </script>
-<table border="0px"  width="100%" style="color:#000000;font-size:12px">
-	<tr>    
-    	<td align="right">
-        	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-            	<tr>
-            	<td width="5px" background="imagenes/module_left.png"></td>
-                <td width="70px" background="imagenes/module_center.png" height="80"  valign="middle"><img src="imagenes/promociones.png" /></td>
-                <td align="left" background="imagenes/module_center.png" height="80" valign="middle" class="titulo"><b>&nbsp;&nbsp;PROMOCIONES&nbsp;&nbsp;</b></td>
-                <td align="right" background="imagenes/module_center.png" height="80" >
-                    <button class="boton2" onclick="location.href='index.php?menu=26&accion=agregar'" ><img src="imagenes/agregar.png" /><br/>Agregar</button>
-			<button class="boton2" onclick="editar()"><img src="imagenes/editar.png" /><br />Editar</button>
-			<button class="boton2" onclick="eliminar()"><img src="imagenes/eliminar.png" /><br />Eliminar</button>
-                </td>
-                <td width="5px" background="imagenes/module_right.png"></td>
-                </tr>
-            </table>
-        </td>
+<table border="0px" width="100%" style="color:#000000;font-size:12px">
+	<tr>
+		<td align="right">
+			<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="5px" background="imagenes/module_left.png"></td>
+					<td width="70px" background="imagenes/module_center.png" height="80" valign="middle"><img src="imagenes/promociones.png" /></td>
+					<td align="left" background="imagenes/module_center.png" height="80" valign="middle" class="titulo"><b>&nbsp;&nbsp;PROMOCIONES&nbsp;&nbsp;</b></td>
+					<td align="right" background="imagenes/module_center.png" height="80">
+						<button class="boton2" onclick="location.href='index.php?menu=26&accion=agregar'"><img src="imagenes/agregar.png" /><br />Agregar</button>
+						<button class="boton2" onclick="editar()"><img src="imagenes/editar.png" /><br />Editar</button>
+						<button class="boton2" onclick="eliminar()"><img src="imagenes/eliminar.png" /><br />Eliminar</button>
+					</td>
+					<td width="5px" background="imagenes/module_right.png"></td>
+				</tr>
+			</table>
+		</td>
 	</tr>
 	<?php
-		if(isset($_POST['accion']))
-		{
-			switch($_POST['accion'])
-			{
-				case 'editar':
-					
-					$query = "update promociones set porcentaje='".addslashes(strtoupper($_POST['porcentaje']))."', descripcion='".addslashes(strtoupper($_POST['descripcion']))."', activo='".addslashes($_POST['activo'])."', id_tipo_ingreso='".addslashes($_POST['tipo_ingreso'])."'  where id_promocion='".addslashes($_POST['id'])."'";
-					
-					if(mysqli_query($conexion,$query))
-					{
-						?>
-							<tr>
-                            	<td colspan="3" align="center" >
-                                	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                		<tr>                                    	
-                                        	<td width="5px" background="imagenes/message_left.png"></td>
-	                                        <td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los datos fueron editados correctamente</td>
-    	                                    <td width="5px" background="imagenes/message_right.png"></td>
-                                        </tr>
-                                    </table>                           
-                            	</td>
-                           </tr>
-						<?php
-							
-					}
-					else
-					{
-						?>
-						<tr>
-                        	<td colspan="3" align="center">
-                            	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                    <tr>                                    	
-                                        <td width="5px" background="imagenes/message_error_left.png"></td>
-                                        <td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al editar los datos.</td>
-                                        <td width="5px" background="imagenes/message_error_right.png"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-						<?php
-					}
-					break;
-					
-				case 'agregar':
-				
-					$query = "insert into promociones (id_promocion,id_tipo_ingreso,porcentaje,descripcion, activo) values (0,'".addslashes($_POST['tipo_ingreso'])."','".addslashes(strtoupper($_POST['porcentaje']))."','".addslashes(strtoupper($_POST['descripcion']))."','".addslashes($_POST['activo'])."')";
-					if(mysqli_query($conexion,$query))
-					{
-						?>
-							<tr>
-                            	<td colspan="3" align="center" >
-                                	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                		<tr>                                    	
-                                        	<td width="5px" background="imagenes/message_left.png"></td>
-	                                        <td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los datos fueron agregados correctamente</td>
-    	                                    <td width="5px" background="imagenes/message_right.png"></td>
-                                        </tr>
-                                    </table>                           
-                            	</td>
-                           </tr>
-						<?php
-					}
-					else
-					{
-						?>
-						<tr>
-                        	<td colspan="3" align="center">
-                            	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                    <tr>                                    	
-                                        <td width="5px" background="imagenes/message_error_left.png"></td>
-                                        <td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al agregar los datos.</td>
-                                        <td width="5px" background="imagenes/message_error_right.png"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-						<?php
-					}
-					break;
-				case 'eliminar':
-					foreach($_POST as $variable => $valor)
-					{
-						if($variable != "selector")
-						{
-							if($variable != "accion")
-							{
-								$query_eliminar = "DELETE FROM promociones WHERE id_promocion='".addslashes($variable)."'";
-								if(mysqli_query($conexion,$query_eliminar))
-									$bandera = true;
-									
-								else
-									$bandera=false;											
-							} 
+	if (isset($_POST['accion'])) {
+		switch ($_POST['accion']) {
+			case 'editar':
+
+				$query = "update promociones set porcentaje='" . addslashes(strtoupper($_POST['porcentaje_valor'])) . "', monto='" . addslashes(strtoupper($_POST['monto_valor'])) . "', descripcion='" . addslashes(strtoupper($_POST['descripcion'])) . "', activo='" . addslashes($_POST['activo']) . "', id_tipo_ingreso='" . addslashes($_POST['tipo_ingreso']) . "'  where id_promocion='" . addslashes($_POST['id']) . "'";
+
+				if (mysqli_query($conexion, $query)) {
+	?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_left.png"></td>
+									<td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los datos fueron editados correctamente</td>
+									<td width="5px" background="imagenes/message_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<?php
+
+				} else {
+				?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_error_left.png"></td>
+									<td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al editar los datos.</td>
+									<td width="5px" background="imagenes/message_error_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<?php
+				}
+				break;
+
+			case 'agregar':
+
+				$query = "insert into promociones (id_promocion,id_tipo_ingreso,porcentaje,monto,descripcion, activo) values (0,'" . addslashes($_POST['tipo_ingreso']) . "','" . addslashes(strtoupper($_POST['porcentaje_valor'])) . "','" . addslashes(strtoupper($_POST['monto_valor'])) . "','" . addslashes(strtoupper($_POST['descripcion'])) . "','" . addslashes($_POST['activo']) . "')";
+				if (mysqli_query($conexion, $query)) {
+				?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_left.png"></td>
+									<td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los datos fueron agregados correctamente</td>
+									<td width="5px" background="imagenes/message_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<?php
+				} else {
+				?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_error_left.png"></td>
+									<td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al agregar los datos.</td>
+									<td width="5px" background="imagenes/message_error_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<?php
+				}
+				break;
+			case 'eliminar':
+				foreach ($_POST as $variable => $valor) {
+					if ($variable != "selector") {
+						if ($variable != "accion") {
+							// $query_eliminar = "DELETE FROM promociones WHERE id_promocion='".addslashes($variable)."'";
+							$query_eliminar = "update promociones set activo='2' where id_promocion='".addslashes($variable)."'";
+							if (mysqli_query($conexion, $query_eliminar))
+								$bandera = true;
+
+							else
+								$bandera = false;
 						}
 					}
-					if($bandera)
-					{
-						?>
-						<tr>
-                        	<td colspan="3" align="center">
-                            	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                    <tr>                                    	
-                                        <td width="5px" background="imagenes/message_left.png"></td>
-                                        <td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los registros fueron eliminados.</td>
-                                        <td width="5px" background="imagenes/message_right.png"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-						<?php
-					}
-					else
-					{
-						?>
-						 <tr>
-                        	<td colspan="3" align="center">
-                            	<table border="0" width="100%" cellpadding="0" cellspacing="0" >
-                                    <tr>                                    	
-                                        <td width="5px" background="imagenes/message_error_left.png"></td>
-                                        <td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al eliminar los registros.</td>
-                                        <td width="5px" background="imagenes/message_error_right.png"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-						<?php
-					}
-					break;
-			}
+				}
+				if ($bandera) {
+				?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_left.png"></td>
+									<td align="center" background="imagenes/message_center.png" height="30" valign="middle" class="fine">Los registros fueron eliminados.</td>
+									<td width="5px" background="imagenes/message_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<?php
+				} else {
+				?>
+					<tr>
+						<td colspan="3" align="center">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5px" background="imagenes/message_error_left.png"></td>
+									<td align="center" background="imagenes/message_error_center.png" height="30" valign="middle" class="warning">Hubo un problema al eliminar los registros.</td>
+									<td width="5px" background="imagenes/message_error_right.png"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+	<?php
+				}
+				break;
 		}
+	}
 	?>
-    <tr><td height="10px"></td></tr>
+	<tr>
+		<td height="10px"></td>
+	</tr>
 	<tr>
 		<td colspan="3">
 			<form name="datagrid" method="post">
-			<table class="datagrid" width="100%" border="0" cellspacing="0">
-				<tr><td colspan="5" height="3px" class="separador"></td></tr>
-				<tr class="tabla_columns">
-                    <td>Nombre</td>
-                    <td>Cantidad</td>
-                    <td>Tipo de Ingreso</td>
-                    <td align="center">Activo</td>
-					<td align="center" width="50px"><input type="checkbox" name="selector" onclick="seleccionar()" /><input type='hidden'name='accion'/></td>
-				</tr>
-				<?php
-					$query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso ORDER BY p.activo DESC, p.porcentaje asc";
-					$tabla = mysqli_query($conexion,$query);
-					while($registro=mysqli_fetch_array($tabla))
-					{
+				<table class="datagrid" width="100%" border="0" cellspacing="0">
+					<tr>
+						<td colspan="5" height="3px" class="separador"></td>
+					</tr>
+					<tr class="tabla_columns">
+						<td>Nombre de la promoción</td>
+						<td>Descuento en Monto</td>
+						<td>Descuento en Porcentaje</td>
+						<td>Tipo de Ingreso</td>
+						<td align="center">Estado</td>
+						<td align="center" width="50px"><input type="checkbox" name="selector" onclick="seleccionar()" /><input type='hidden' name='accion' /></td>
+					</tr>
+					<?php
+					// $query = "select p.id_promocion, c.descripcion, p.descripcion,p.porcentaje,p.monto,p.activo from promociones p, cat_tipo_ingreso c where c.id_tipo_ingreso=p.id_tipo_ingreso ORDER BY p.activo DESC, p.porcentaje asc";
+					$query = "SELECT p.id_promocion, c.descripcion, p.descripcion, p.porcentaje, p.monto, p.activo
+								FROM promociones p
+								JOIN cat_tipo_ingreso c ON c.id_tipo_ingreso = p.id_tipo_ingreso
+								WHERE p.activo IN (0, 1)
+								ORDER BY p.activo DESC, p.porcentaje ASC
+							";
+					$tabla = mysqli_query($conexion, $query);
+					while ($registro = mysqli_fetch_array($tabla)) {
 						$bandera = true;
-						?>
-							<tr class="tabla_row">
-								<td><a href="index.php?menu=26&accion=editar&id=<?php echo $registro[0];  ?>"><?php echo $registro[2]; ?></a></td>
-                                <td>$ <?php echo $registro[3]; ?></td>
-                                <td><?php echo $registro[1]; ?></td>
-                                <td align="center"><?php
-									if($registro[4]=="1")
-										echo "<img src=\"imagenes/ok_16.png\" alt=\"Activo\" title=\"Activo\">" ; 
-									else
-										echo "<img src=\"imagenes/non_ok_16.png\" alt=\"No Activo\" title=\"No Activo\">" ; 
-								?></td>
-								<td align="center"><input type="checkbox" name="<?php echo $registro[0];  ?>" /></td>
-							</tr>
-						<?php
+					?>
+						<tr class="tabla_row">
+							<td><a href="index.php?menu=26&accion=editar&id=<?php echo $registro[0];  ?>"><?php echo $registro[2]; ?></a></td>
+							<td>$ <?php echo $registro[4]; ?></td>
+							<td>% <?php echo $registro[3]; ?></td>
+							<td><?php echo $registro[1]; ?></td>
+							<td align="center"><?php
+												if ($registro[5] == "1")
+													echo "<img src=\"imagenes/ok_16.png\" alt=\"Activo\" title=\"Activo\">";
+												else
+													echo "<img src=\"imagenes/non_ok_16.png\" alt=\"No Activo\" title=\"No Activo\">";
+												?></td>
+							<td align="center"><input type="checkbox" name="<?php echo $registro[0];  ?>" /></td>
+						</tr>
+					<?php
 					}
-					if(!$bandera)
-					{
-						?>
-                        <tr><td colspan="5">No hay Registros</td></tr>
-                        <?php
+					if (!$bandera) {
+					?>
+						<tr>
+							<td colspan="5">No hay Registros</td>
+						</tr>
+					<?php
 					}
-				?>
-				<tr><td colspan="5"  height="3px" class="separador"></td></tr>
-			</table>
+					?>
+					<tr>
+						<td colspan="5" height="3px" class="separador"></td>
+					</tr>
+				</table>
 			</form>
 		</td>
 	</tr>

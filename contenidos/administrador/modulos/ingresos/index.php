@@ -134,6 +134,8 @@
 				print_r($conceptos);
 				echo "</pre>";
 
+				exit;
+
 				//obtener todas las variables necesarias
 
 				$id_cliente = $_POST['id_cliente'];
@@ -200,12 +202,6 @@
 						$queryeliminar = "DELETE FROM conf_internet WHERE estatus = 'PROCESO' AND pasos = 'Alta_ingreso' AND  id_cliente='$id_cliente'";
 						mysqli_query($conexion, $queryeliminar);
 					}
-
-					echo "<pre>";
-					var_dump($conceptos);
-					echo "</pre>";
-					exit;
-
 					//Validar cada concepto
 					foreach ($conceptos as $index => $concepto) {
 
@@ -1107,7 +1103,7 @@
 					}
 
 					//Alerta de exito con redireccionamiento a reporte de servicio
-	?>
+					?>
 					<tr>
 						<td colspan="3" align="center">
 							<table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -1127,11 +1123,11 @@
 							window.location.href = "https://sysadmrtv.tuvisiontelecable.com.mx/index.php?menu=18&accion=agregar";
 						}, 3000); // Redirige después de 3 segundos
 					</script>
-				<?php
+					<?php
 
 				} else {
 					//en caso de error mostrar mensaje de error
-				?>
+					?>
 					<tr>
 						<td colspan="3" align="center">
 							<table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -1143,7 +1139,7 @@
 							</table>
 						</td>
 					</tr>
-	<?php
+					<?php
 				}
 				break;
 		}

@@ -622,7 +622,7 @@
 		let total = parseFloat(precios) || 0;
 
 		document.getElementById("div_subtotal_" + idFila).innerHTML =
-			"<strong>Subtotal: </strong> <input type='text' id='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + total + "' />";
+			"<strong>Subtotal: </strong> <input type='text' id='subtotal_" + idFila + "' name='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + total + "' />";
 
 		document.getElementById("subtotal2_" + idFila).value = total;
 
@@ -736,11 +736,41 @@
 	// 	}
 	// }
 
+	//este es el anterior
+	// function cargarNuevoTotal(promocion, idFila) {
+	// 	let subtotalInput = document.getElementById('subtotal_' + idFila);
+	// 	let respaldoInput = document.getElementById('subtotal2_' + idFila); // respaldo de la fila
+
+	// 	// Si no hay respaldo, lo inicializamos con el valor actual
+	// 	if (!respaldoInput.value) {
+	// 		respaldoInput.value = subtotalInput.value;
+	// 	}
+
+	// 	let base = parseFloat(respaldoInput.value) || 0;
+	// 	let nuevoPrecio = base;
+
+	// 	if (promocion != null && promocion !== '') {
+	// 		let descuento = parseFloat(promocion) || 0;
+	// 		nuevoPrecio = base - descuento;
+	// 	}
+
+	// 	// Actualizamos el input de la fila
+	// 	subtotalInput.value = nuevoPrecio.toFixed(2);
+
+	// 	// Actualizamos el div de la fila (si lo tienes)
+	// 	let divSubtotal = document.getElementById("div_subtotal_" + idFila);
+	// 	if (divSubtotal) {
+	// 		divSubtotal.innerHTML = "<strong>Subtotal: </strong> <input type='text' name='subtotal_" + idFila + "' id='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + nuevoPrecio.toFixed(2) + "' />";
+	// 	}
+
+	// 	// Finalmente, actualizamos el total general sumando todos los subtotales
+	// 	actualizarTotalGeneral();
+	// }
+
 	function cargarNuevoTotal(promocion, idFila) {
 		let subtotalInput = document.getElementById('subtotal_' + idFila);
-		let respaldoInput = document.getElementById('subtotal2_' + idFila); // respaldo de la fila
+		let respaldoInput = document.getElementById('subtotal2_' + idFila);
 
-		// Si no hay respaldo, lo inicializamos con el valor actual
 		if (!respaldoInput.value) {
 			respaldoInput.value = subtotalInput.value;
 		}
@@ -753,16 +783,9 @@
 			nuevoPrecio = base - descuento;
 		}
 
-		// Actualizamos el input de la fila
+		// ✅ Solo actualizamos el valor, sin recrear el input
 		subtotalInput.value = nuevoPrecio.toFixed(2);
 
-		// Actualizamos el div de la fila (si lo tienes)
-		let divSubtotal = document.getElementById("div_subtotal_" + idFila);
-		if (divSubtotal) {
-			divSubtotal.innerHTML = "<strong>Subtotal: </strong> <input type='text' name='subtotal_" + idFila + "' id='subtotal_" + idFila + "' readonly style='width:200px;text-transform:uppercase;' value='" + nuevoPrecio.toFixed(2) + "' />";
-		}
-
-		// Finalmente, actualizamos el total general sumando todos los subtotales
 		actualizarTotalGeneral();
 	}
 
