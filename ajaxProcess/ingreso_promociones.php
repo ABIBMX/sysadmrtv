@@ -1006,21 +1006,45 @@ if (isset($_POST['conceptoPromo']) && isset($_POST['fila'])) {
 
 	$concepto = $_POST['conceptoPromo'];
 	$fila = $_POST['fila'];
+	$tipo = $_POST['tipoPromo'];
 
-	$query = "SELECT id_promocion, id_tipo_ingreso, porcentaje, descripcion 
+	if ($tipo == 'porcentaje') {
+		$query = "SELECT id_promocion, id_tipo_ingreso, porcentaje, descripcion 
               FROM promociones 
-              WHERE id_tipo_ingreso = '$concepto' 
+              WHERE id_tipo_ingreso = '$concepto'
+              AND porcentaje IS NOT NULL
+              AND porcentaje > 0
               AND activo = '1'";
+	} elseif ($tipo == 'monto') {
+		$query = "SELECT id_promocion, id_tipo_ingreso, monto, descripcion 
+              FROM promociones 
+              WHERE id_tipo_ingreso = '$concepto'
+              AND monto IS NOT NULL
+              AND monto > 0
+              AND activo = '1'";
+	}
 
 	$result = mysqli_query($conexion, $query);
 	if ($result) {
-		echo " &nbsp;Promociones Disponibles : ";
-		echo "<select name='promocion_$fila' id='promocion_$fila' style='width:250px; font-size:12px;'  onchange=\"cargarNuevoTotal(this.options[this.selectedIndex].dataset.porcentaje, '$fila');\">";
-		echo "<option value='null'>Seleccione una promoción</option>";
-		while (list($id, $tipoIngreso, $porcentaje, $descripcion) = mysqli_fetch_array($result)) {
-			echo "<option value='$id' data-porcentaje='$porcentaje'>$descripcion - $porcentaje</option>";
+
+		if ($tipo == 'porcentaje') {
+
+			echo " &nbsp;Promociones Disponibles : ";
+			echo "<select name='promocion_$fila' id='promocion_$fila' style='width:250px; font-size:12px;'  onchange=\"cargarNuevoTotal(this.options[this.selectedIndex].dataset.porcentaje, '$fila', 'porcentaje');\">";
+			echo "<option value='null'>Seleccione una promoción</option>";
+			while (list($id, $tipoIngreso, $porcentaje, $descripcion) = mysqli_fetch_array($result)) {
+				echo "<option value='$id' data-porcentaje='$porcentaje'>$descripcion - $porcentaje.%</option>";
+			}
+			echo "</select><br>";
+		} elseif ($tipo == 'monto') {
+			echo " &nbsp;Promociones Disponibles : ";
+			echo "<select name='promocion_$fila' id='promocion_$fila' style='width:250px; font-size:12px;'  onchange=\"cargarNuevoTotal(this.options[this.selectedIndex].dataset.monto, '$fila', 'monto');\">";
+			echo "<option value='null'>Seleccione una promoción</option>";
+			while (list($id, $tipoIngreso, $monto, $descripcion) = mysqli_fetch_array($result)) {
+				echo "<option value='$id' data-monto='$monto'>$descripcion - $$monto</option>";
+			}
+			echo "</select><br>";
 		}
-		echo "</select><br>";
 	}
 }
 

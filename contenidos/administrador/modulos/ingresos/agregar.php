@@ -561,6 +561,7 @@
 
 	function cargarMontoConcepto(conceptoMonto, idFila) {
 		let div_monto = document.getElementById('div_monto_' + idFila);
+		let div_tipopromo = document.getElementById('div_tipopromo_' + idFila);
 		let id_cliente = document.getElementById('id_cliente').value;
 
 		if (conceptoMonto != '' && conceptoMonto != null) {
@@ -573,7 +574,18 @@
 				document.getElementById('label_pago_parcial').style.display = 'none';
 			}
 
-			promociones(conceptoMonto, idFila);
+			// Crear select de tipo de promoción
+			let selectHTML = `
+			<select id="tipo_promo_${idFila}" class="form-control" onchange="ejecutarPromocion('${conceptoMonto}', ${idFila}, this.value)">
+				<option value="">-- Seleccionar tipo de promoción --</option>
+				<option value="porcentaje">Por porcentaje</option>
+				<option value="monto">Por Monto</option>
+			</select>
+		`;
+			div_tipopromo.innerHTML = selectHTML;
+
+
+			// promociones(conceptoMonto, idFila);
 
 			div_monto.innerHTML = "<img src='imagenes/loading.gif' /> <span style='font-size:10px;'>Cargando Monto...</span>";
 
@@ -590,6 +602,14 @@
 			});
 		} else {
 			div_monto.innerHTML = "Es necesario seleccionar un concepto";
+		}
+	}
+
+	// Nueva función para ejecutar promociones con tipo
+	function ejecutarPromocion(conceptoMonto, idFila, tipoPromo) {
+		if (tipoPromo !== "") {
+			// Ejecuta la función original pasando el tipo
+			promociones(conceptoMonto, idFila, tipoPromo);
 		}
 	}
 
@@ -668,13 +688,13 @@
 
 	// }
 
-	function promociones(conceptoMonto, idFila) {
+	function promociones(conceptoMonto, idFila, tipoPromo) {
 		let div_promociones = document.getElementById('div_promociones_' + idFila);
 
 		if (conceptoMonto != '' && conceptoMonto != null) {
 			div_promociones.innerHTML = "<img src='imagenes/loading.gif' /> <span style='font-size:10px;'>Cargando Promociones...</span>";
 
-			let conceptoPromo = "conceptoPromo=" + conceptoMonto + "&fila=" + idFila;
+			let conceptoPromo = "conceptoPromo=" + conceptoMonto + "&fila=" + idFila + "&tipoPromo=" + tipoPromo;
 
 			$.ajax({
 				type: "POST",
@@ -767,7 +787,7 @@
 	// 	actualizarTotalGeneral();
 	// }
 
-	function cargarNuevoTotal(promocion, idFila) {
+	function cargarNuevoTotal(promocion, idFila, tipo) {
 		let subtotalInput = document.getElementById('subtotal_' + idFila);
 		let respaldoInput = document.getElementById('subtotal2_' + idFila);
 
@@ -780,8 +800,17 @@
 
 		if (promocion != null && promocion !== '') {
 			let descuento = parseFloat(promocion) || 0;
-			nuevoPrecio = base - descuento;
+
+			if (tipo === 'porcentaje') {
+				descuento = (base * descuento) / 100;
+				nuevoPrecio = base - descuento;
+			} else if (tipo === 'monto') {
+				nuevoPrecio = base - descuento;
+			}
 		}
+
+		// 🔹 Redondeo clásico (>= .5 sube, < .5 baja)
+		nuevoPrecio = Math.round(nuevoPrecio);
 
 		// ✅ Solo actualizamos el valor, sin recrear el input
 		subtotalInput.value = nuevoPrecio.toFixed(2);
@@ -854,6 +883,11 @@
             <div id="div_monto_${contadorConceptosAdd2}"></div>
         </td>
 
+		<!-- Tipo Promocion -->
+        <td>
+            <div id="div_tipopromo_${contadorConceptosAdd2}"></div>
+        </td>
+		
         <!-- Promociones -->
         <td>
             <div id="div_promociones_${contadorConceptosAdd2}"></div>
@@ -1059,6 +1093,7 @@
 									<td width="200px">Categorias</td>
 									<td width="200px">Concepto</td>
 									<td width="100px">Monto</td>
+									<td width="200px">Tipo Promocion</td>
 									<td width="200px">Promocion</td>
 									<td></td>
 									<td width="200px" align="right">SubTotal</td>
@@ -1088,6 +1123,11 @@
 									<!-- Montos -->
 									<td>
 										<div id="div_monto_0"></div>
+									</td>
+
+									<!-- Tipo Promocion -->
+									<td>
+										<div id="div_tipopromo_0"></div>
 									</td>
 
 									<!-- Promociones -->
